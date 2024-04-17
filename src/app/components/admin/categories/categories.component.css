@@ -1,0 +1,100 @@
+.categoriesContain h3 a{
+    text-decoration: none;
+    color: #0F42A8;
+}
+
+.btnCloseModal i {
+    font-size: 25px;
+    color: #0F42A8;
+}
+
+.modal-header {
+    border-bottom: 2px solid #0F42A8;
+}
+
+.modal-footer {
+    border-top: 2px solid #0F42A8;
+}
+
+.modal-body label {
+    color: #0F42A8;
+}
+
+.btnFermer {
+    background-color: black;
+    color: white;
+}
+
+.modal-header h1,
+h5 {
+    color: #0F42A8;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.btnModifier{
+    background-color: #0F42A8;
+    color: white;
+    font-weight: 500;
+}
+
+.trait{
+    width: 100px;
+    border: 2px solid #0F42A8;
+    margin: 0 auto;
+}
+
+.card{
+    border-bottom: 10px solid #0F42A8;
+}
+
+.listeCtg{
+    height: 75vh !important;
+}
+
+.card .titreAdd{
+    color: #0F42A8;
+}
+
+.table .thead tr td {
+    text-align: center;
+}
+
+.text-chargement {
+    color: #0F42A8;
+    margin-top: 20px;
+    /* margin-left: 25px; */
+}
+
+.table .tbody tr {
+    align-items: center;
+}
+
+table .titreTab th {
+    color: #0F42A8 !important;
+}
+
+.detailIcon span i{
+    color: #0F42A8;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+table .detailIcon img{
+    width: 20px;
+    height: 18px;
+}
+
+
+.boutonAdd button{
+    background-color: black;
+    width: 35%;
+    color: white;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .categoriesContain {
+        margin: 3% 0 !important;
+    }
+}

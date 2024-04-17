@@ -1,0 +1,150 @@
+<div class="categoriesContain mx-4">
+    <h3 class="my-3"><a href="" routerLink="/categories">Catégories /</a></h3>
+
+    <div class="row mt-3">
+
+        <div class="col-12 col-md-8">
+            <div class="card listeCtg px-4 shadow" *ngIf="CategoriesListe">
+                <h4 class="text-center my-4 fw-bold">Liste des catégories</h4>
+                <div class="trait mb-5"></div>
+
+                <div *ngIf="isLoading">
+                    <!-- Attendez que les données soient chargées -->
+                    <p class="fw-lighter fw-bold"> <span class="text-chargement">Chargement en cours...</span></p>
+                </div>
+
+                <div *ngIf="!isLoading && listeCategories.length === 0">
+                    <p class="fw-lighter px-2"> <span class="text-chargement">Oops!</span> Pas de catégories disponibles...</p>
+                </div>
+
+                <div class="table-responsive" *ngIf="!isLoading && listeCategories.length > 0">
+                    <table class="table mb-5 mx-4 border" datatable [dtOptions]="dtOptions" class="table row-border hover w-100"
+                        *ngIf="listeCategories.length > 0">
+                        <thead class="">
+                            <tr class="titreTab fw-light text-start">
+                                <th scope="col">Catégories</th>
+                                <th scope="col" class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="fs-6 text-start" *ngFor="let categorie of listeCategories">
+                                <td scope="col"> {{categorie.nom}} </td>
+                                <td scope="col" class="detailIcon text-center">
+                                    <span class="mx-2" data-bs-toggle="modal" data-bs-target="#modifierCategorie" (click)="prepareEdit(categorie)">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </span>
+                                    <span class="mx-2"><i class="bi bi-x-square-fill"
+                                            (click)="simpleDeleteCategorie(categorie.id)"></i></span>
+                                </td>
+                            </tr>
+                    
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="">
+                    <button class="btn" (click)="afficherCategories()">Voir corbeille</button>
+                </div>
+            </div>
+
+
+            <div class="card listeCtg px-4 shadow" *ngIf="!CategoriesListe">
+                <h4 class="text-center my-4 fw-bold">Liste des catégories supprimées</h4>
+                <div class="trait mb-5"></div>
+
+                <div *ngIf="categoriesSupprimees.length === 0">
+                    <p class="fw-lighter px-2"> <span class="text-chargement">Oops!</span> Pas de catégories disponibles...</p>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table mb-5 mx-4 border" datatable [dtOptions]="dtOptions" class="table row-border hover w-100">
+                        <thead class="">
+                            <tr class="titreTab fw-light text-start">
+                                <th scope="col">Catégories</th>
+                                <th scope="col" class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="fs-6 text-start" *ngFor="let categorie of categoriesSupprimees">
+                                <td scope="col"> {{categorie.nom}} </td>
+                                <td scope="col" class="detailIcon text-center">
+                                    <span class="mx-2">
+                                        <i class="bi bi-recycle" (click)="restaurerCategorie(categorie.id)"></i>
+                                        <!-- <i class="bi bi-recycle"></i> -->
+                                        <!-- <i class="fa-solid fa-trash-can-arrow-up" ></i> -->
+                                    </span>
+                                    <span class="mx-2">
+                                        <i class="bi bi-x-square-fill" (click)="deleteCategorie(categorie.id)"></i>
+                                    </span>
+                                </td>
+                            </tr>
+                    
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="">
+                    <span class="btn" (click)="afficherCategories()">Voir la liste des catégories disponibles</span>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Ajout de categorie -->
+        <div class="col-12 col-md-4 p-3">
+            <div class="card px-4 shadow">
+                <h4 class="text-center my-4 fw-bold titreAdd">Ajouter une catégorie</h4>
+                <div class="trait"></div>
+
+                <form action="" class="fromADDCategorie my-4" (ngSubmit)="addCategorie()">
+                    <!--  -->
+                    <div class="my-4">
+                        <label for="categorie" class="form-label">Nom de la catégorie</label>
+                        <input type="text" class="form-control" name="nom" id="categorie" placeholder="Catégorie" [(ngModel)]="categorie">
+                        <!-- (input)="validateCategorie()" -->
+                        <span *ngIf="categorieTouched && categorieEmpty && !validationMessages['categorie']" class="text-danger">
+                            Le prénom est requis
+                        </span>
+                        <span *ngIf="validationMessages['categorie']" class="text-danger">{{ validationMessages['categorie'] }}</span>
+                        <span *ngIf="!validationMessages['categorie'] && categorie" class="text-success">Correct</span>
+                    </div>
+
+                    <div class="boutonAdd mt-4 d-flex justify-content-center align-content-center">
+                        <button class="btn w-50" type="submit">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal modifier Categorie -->
+
+<div id="modifierCategorie" class="modal fade" tabindex="-1" *ngIf="categorieToEdit">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header shadow">
+                <h5 class="modal-title" id="editCategorieLabel">Modifier la categorie</h5>
+                <span type="button" class="btnCloseModal" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i></span>
+            </div>
+            <div class="modal-body my-3">
+                <form (submit)="editCategorie()">
+                    <!--  -->
+                    <div class="mb-3">
+                        <label for="editTitle" class="form-label fs-5">Libellé de la categorie</label>
+                        <input type="text" class="form-control" id="editTitle" name="titre"
+                            [(ngModel)]="categorieToEdit.nom">
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="submit" class="btn btnModifier" data-bs-dismiss="modal" (click)="editCategorie()">Modifier</button>
+                <!--  -->
+            </div>
+        </div>
+    </div>
+</div>

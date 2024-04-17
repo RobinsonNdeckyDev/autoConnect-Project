@@ -1,0 +1,142 @@
+<div class="profilContain py-3 mx-4">
+    <!-- <h3 class="navTitle mb-3"><a href="">Mon profil /</a></h3> -->
+
+    <div class="profil mt-2 shadow rounded-4 py-3 px-4">
+        <!-- <div class="profilhead">
+            <h3>Modifier mon profil</h3>
+        </div>
+        <hr> -->
+        <div class="profilBody">
+            <ul class="nav navProfil mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" routerLinkActive="activeLink" id="pills-home-tab" data-bs-toggle="pill"
+                        data-bs-target="#dtProfil" type="button" role="tab" aria-controls="dtProfil" aria-selected="false">Mes
+                        informations</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link " routerLinkActive="activeLink" id="pills-profile-tab" data-bs-toggle="pill"
+                        data-bs-target="#mdfProfil" type="button" role="tab" aria-controls="mdfProfil"
+                        aria-selected="true">Modifier mon profil</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="dtProfil" role="tabpanel" aria-labelledby="dtProfil-tab" tabindex="0">
+                    <h5 class="mb-3">Infos</h5>
+                    <hr>
+                    <div>
+                        <div class="profilInfos row">
+                            <div class="profilImg col-12 col-md-5">
+                                <img src="{{apiImage}}{{userConnected.image}}" alt="" class="img-fluid w-100">
+                            </div>
+                            <div class="profilDetail col-12 col-md-7">
+                                <div class="row">
+                                    <div class="col-12 col-md-6 pfInfos">
+                                        <div>
+                                            <div class="mb-3">
+                                                <p for="prenom" class="form-label text-black fw-lighter"> {{userConnected.prenom}}
+                                                    {{userConnected.nom}}</p>
+                                            </div>
+                                            <div class="mb-3">
+                                                <p for="prenom" class="form-label text-black fw-lighter"> {{userConnected.adresse}} </p>
+                                            </div>
+                                            <div class="mb-3">
+                                                <p for="prenom" class="form-label text-black fw-lighter"> {{userConnected.telephone}} </p>
+                                            </div>
+                                            <div class="mb-3">
+                                                <p for="prenom" class="form-label text-black fw-lighter"> {{userConnected.email}} </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 pfInfos">
+                                        <div>
+                                            <div class="mb-3 logo">
+                                                <img src="/assets/images/logo2-removebg-preview.png" alt="" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <hr>
+                        <h5>Description</h5>
+                        <hr>
+                        <div class="mb-5">
+                            <p for="prenom" class="form-label text-black fw-lighter"> {{userConnected.description}} </p>
+                        </div>
+        
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="mdfProfil" role="tabpanel" aria-labelledby="mdfProfil-tab"
+                    tabindex="0">
+                    <h5 class="mb-3">Modifier votre profil</h5>
+                    <hr>
+                    <div class="">
+                        <!-- (ngSubmit)="updatevendeurDetails()" -->
+                        <form class="row" action="" (ngSubmit)="onSubmit()">
+                            <div class="col-12 col-md-6">
+                                <div class="mb-3 inputs">
+                                    <label for="prenom" class="form-label">Prénom</label>
+                                    <input type="text" name="prenom" id="prenom" class="form-control"
+                                        [(ngModel)]="userConnected.prenom">
+                                </div>
+        
+                                <div class="mb-3 inputs">
+                                    <label for="adresse" class="form-label">Adresse</label>
+                                    <input type="text" name="adresse" id="adresse" class="form-control"
+                                        [(ngModel)]="userConnected.adresse">
+                                </div>
+        
+                                <div class="mb-3 inputs">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" name="email" id="email" class="form-control"
+                                        [(ngModel)]="userConnected.email">
+                                </div>
+        
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="mb-3 inputs">
+                                    <label for="nom" class="form-label">Nom</label>
+                                    <input type="text" name="nom" id="nom" class="form-control" [(ngModel)]="userConnected.nom">
+                                </div>
+        
+        
+                                <div class="mb-3 inputs">
+                                    <label for="telephone" class="form-label">Téléphone</label>
+                                    <input type="telephone" name="telephone" id="telephone" class="form-control"
+                                        [(ngModel)]="userConnected.telephone">
+                                </div>
+        
+                                <div class="mb-3 inputs">
+                                    <label for="image" class="form-label">Photo de profil</label>
+                                    <input (change)="profilAdd($event)" type="file" class="form-control" id="image" name="image"
+                                        accept="image/* {{userConnected.image}}">
+                                </div>
+        
+                                <input type="hidden" value="vendeur" name="role" />
+        
+                            </div>
+        
+                            <hr>
+                            <h5>Description</h5>
+                            <hr>
+        
+                            <div class="mb-3 inputs">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea name="description" id="description" class="form-control"
+                                    [(ngModel)]="userConnected.description"></textarea>
+                            </div>
+        
+                            <div class="bouton mt-3 d-flex justify-content-center">
+                                <button class="btn w-50 btnUpdate">Enregistrer</button>
+                                <!-- (click)="updateProfil()" -->
+                            </div>
+        
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

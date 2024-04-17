@@ -1,0 +1,203 @@
+<app-navbar></app-navbar>
+
+<section class="bannerAuto mt-5"></section>
+
+<section class="carListe py-3">
+    <div class="carListeContainer container">
+        <h2 class="text-center py-4">Trouvez-vous un véhicule</h2>
+        <div class="trait mb-4"></div>
+
+        <div class="carteAnnonces mb-5 container mt-3">
+            <div class="row cartes m-0 g-4" [attr.data-aos]="'fade-up'" [attr.data-aos-duration]="1000" [attr.data-aos-delay]="800">
+                
+                <p class="vhls"><img src="/assets/images/vehicules/pointCar.png" class="" alt=""><a class="text-decoration-none" routerLink="voitures">Annonces de vente de voitures</a></p>
+                
+                <div class="col-12 col-md-4" *ngFor="let voiture of annonceVoitureFiltered">
+                    <div class="card shadow">
+                        <div class="cardImg mx-3">
+                            <div id="carouselExampleInterval" class="carousel slide rounded-3 shadow" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active" data-bs-interval="10000">
+                                        <img src="{{apiImage}}{{voiture?.image1}}" class="d-block w-100 imgPrinc rounded-3"
+                                            alt="...">
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="{{apiImage}}{{voiture?.image2}}" class="d-block w-100 imgPrinc rounded-3"
+                                            alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="{{apiImage}}{{voiture?.image3}}" class="d-block w-100 imgPrinc rounded-3"
+                                            alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="{{apiImage}}{{voiture?.image4}}" class="d-block w-100 imgPrinc rounded-3"
+                                            alt="...">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="cardTitle mx-3">
+                            <span class="nom"> {{voiture.nom}} </span>
+                            <span class="profil"><img src="{{apiImage}}{{voiture.infosProprietaire?.image}}" class="img-fluid"
+                                    alt=""></span>
+                        </div>
+                        <div class="cardTrait mb-3 mt-2"></div>
+                        <div class="cardDetails mx-3">
+                            <div class="left">
+                                <p><img src="/assets/images/iconSvg/moteur.png" class="" alt=""> {{voiture.moteur}} </p>
+                                <p><img src="/assets/images/iconSvg/calendar.png" alt=""> {{voiture.annee}} </p>
+                            </div>
+                            <div class="Right">
+                                <p><img src="/assets/images/iconSvg/dashboard.png" alt=""> {{voiture.kilometrage}} </p>
+                                <p><img src="/assets/images/iconSvg/fuel.png" alt=""> {{voiture.carburant}} </p>
+                            </div>
+                        </div>
+                        <p class="text-center"><img src="/assets/images/iconSvg/money.png" alt=""> {{voiture.prix}} Fcfa</p>
+                        <div class="cardTrait"></div>
+                        <div class="cardButton mx-3 my-3">
+                            <button class="btn" (click)="redirectToDetailsVoiture(voiture.id)"><a>Consulter l'annonce</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row cartes mt-2 g-4" [attr.data-aos]="'fade-in'" [attr.data-aos-duration]="1000" [attr.data-aos-delay]="880">
+                
+                <p class="vhls"><img src="/assets/images/vehicules/pointCar.png" class="" alt=""><a class="text-decoration-none" routerLink="motos">Annonces de vente de motos</a></p>
+                
+                <div class="col-12 col-md-4" *ngFor="let moto of annonceMotoFiltered">
+                    <div class="card shadow">
+                        <div class="cardImg mx-3">
+                            <div id="carouselExampleInterval" class="carousel slide rounded-3 shadow" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active" data-bs-interval="10000">
+                                        <img src="{{apiImage}}{{moto?.image1}}" class="d-block w-100 imgPrinc rounded-3"
+                                            alt="...">
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="{{apiImage}}{{moto?.image2}}" class="d-block w-100 imgPrinc rounded-3"
+                                            alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="{{apiImage}}{{moto?.image3}}" class="d-block w-100 imgPrinc rounded-3"
+                                            alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="{{apiImage}}{{moto?.image4}}" class="d-block w-100 imgPrinc rounded-3"
+                                            alt="...">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                            <!-- <img src="{{apiImage}}{{moto.image1}}" class="img-fluid imgPrinc w-100" alt=""> -->
+                        </div>
+                        <div class="cardTitle mx-3">
+                            <span class="nom"> {{moto.nom}}</span>
+                            <span class="profil"><img src="{{apiImage}}{{moto.infosProprietaire?.image}}" class="img-fluid" alt=""></span>
+                        </div>
+                        <div class="cardTrait mb-3 mt-2"></div>
+                        <div class="cardDetails mx-3">
+                            <div class="left">
+                                <p><img src="/assets/images/iconSvg/moteur.png" class="" alt=""> {{moto.moteur}}</p>
+                                <p><img src="/assets/images/iconSvg/calendar.png" alt=""> {{moto.annee}}</p>
+                                <!-- <p><img src="/assets/images/iconSvg/Transmission.png" alt="">Transmission</p> -->
+                            </div>
+                            <div class="Right">
+                                <p><img src="/assets/images/iconSvg/dashboard.png" alt=""> {{moto.kilometrage}} KM</p>
+                                <p><img src="/assets/images/iconSvg/fuel.png" alt=""> {{moto.carburant}}</p>
+                            </div>
+                        </div>
+                        <p class="text-center"><img src="/assets/images/iconSvg/money.png" alt=""> {{moto.prix}} Fcfa</p>
+                        <div class="cardTrait"></div>
+                        <div class="cardButton mx-3 my-3">
+                            <button class="btn"><a routerLink="/vehicules/motos/detailMoto" (click)="redirectToDetailsMoto(moto.id)">Consulter l'annonce</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row cartes mt-2 g-4" [attr.data-aos]="'fade-up'" [attr.data-aos-duration]="1000" [attr.data-aos-delay]="900">
+    
+                <p class="vhls"><img src="/assets/images/vehicules/pointCar.png" class="" alt=""><a class="text-decoration-none" routerLink="utilitaires">Annonces de vent de véhicules utilitaires</a></p>
+            
+                <div class="col-12 col-md-4" *ngFor="let utilitaire of annonceUtilitaireFiltered">
+                    <div class="card shadow">
+                        <div class="cardImg mx-3">
+                            <div id="carouselExampleInterval" class="carousel slide rounded-3 shadow" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active" data-bs-interval="10000">
+                                        <img src="{{apiImage}}{{utilitaire?.image1}}" class="d-block w-100 imgPrinc rounded-3"
+                                            alt="...">
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="{{apiImage}}{{utilitaire?.image2}}" class="d-block w-100 imgPrinc rounded-3"
+                                            alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="{{apiImage}}{{utilitaire?.image3}}" class="d-block w-100 imgPrinc rounded-3"
+                                            alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="{{apiImage}}{{utilitaire?.image4}}" class="d-block w-100 imgPrinc rounded-3"
+                                            alt="...">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="cardTitle mx-3">
+                            <span class="nom"> {{utilitaire.nom}} </span>
+                            <span class="profil"><img src="{{apiImage}}{{utilitaire.infosProprietaire?.image}}" class="img-fluid" alt=""></span>
+                        </div>
+                        <div class="cardTrait mb-3 mt-2"></div>
+                        <div class="cardDetails mx-3">
+                            <div class="left">
+                                <p><img src="/assets/images/iconSvg/moteur.png" class="" alt=""> {{utilitaire.moteur}}</p>
+                                <p><img src="/assets/images/iconSvg/calendar.png" alt=""> {{utilitaire.annee}}</p>
+                                <!-- <p><img src="/assets/images/iconSvg/Transmission.png" alt="">Transmission</p> -->
+                            </div>
+                            <div class="Right">
+                                <p><img src="/assets/images/iconSvg/dashboard.png" alt=""> {{utilitaire.kilometrage}}</p>
+                                <p><img src="/assets/images/iconSvg/fuel.png" alt=""> {{utilitaire.carburant}}</p>
+                            </div>
+                        </div>
+                        <p class="text-center"><img src="/assets/images/iconSvg/money.png" alt=""> {{utilitaire.prix}} Fcfa</p>
+                        <div class="cardTrait"></div>
+                        <div class="cardButton mx-3 my-3">
+                            <button class="btn"><a routerLink="/vehicules/utilitaires/detailUtilitaire" (click)="redirectToDetailsUtilitaire(utilitaire.id)">Consulter l'annonce</a></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bannerEnd" [attr.data-aos]="'fade-in'" [attr.data-aos-duration]="1000" [attr.data-aos-delay]="980"></section>
+
+<app-scroll-button></app-scroll-button>
+
+<app-footer></app-footer>

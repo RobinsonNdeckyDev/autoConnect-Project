@@ -1,0 +1,76 @@
+<app-navbar></app-navbar>
+
+<section class="bannerMotos mt-4"></section>
+
+<section class="motos py-3">
+    <div class="motosContainer container">
+        <h2 class="text-center my-4">Trouvez-vous une moto</h2>
+        <div class="trait mb-4"></div>
+
+
+        <div class="carteAnnonces mb-5 container mt-3">
+
+            <div class="headAnnonces mb-4">
+                <button class="btn shadow"><a href="" routerLink="/login">Vendre mon véhicule</a></button>
+                <div class="search shadow">
+                    <input type="text" name="textSearch" class="border-0" id="textSearch"
+                        placeholder="Faite une recherche..." [(ngModel)]="searchTerm" (input)="onSearchChange()"
+                    >
+                    <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+            </div>
+
+            <div *ngIf="isLoading">
+                <!-- Attendez que les données soient chargées -->
+                <p class="fw-lighter fw-bold"> <span class="text-chargement">Chargement en cours...</span></p>
+            </div>
+
+            <div *ngIf="!isLoading && (!fiteredMotos || fiteredMotos.length === 0)">
+                <p class="fw-lighter fw-lighter"> <span class="text-chargement fw-bold">Oops!</span> Pas de moto disponible pour l'instant</p>
+            </div>
+
+            <div *ngIf="!isLoading && fiteredMotos && fiteredMotos.length > 0">
+                <div class="row cartes m-0 g-4">
+                
+                    <div class="col-12 col-md-4" *ngFor="let moto of fiteredMotos">
+                        <div class="card shadow">
+                            <div class="cardImg mx-3">
+                                <img src="{{apiImage}}{{moto.image1}}" class="img-fluid imgPrinc w-100" alt="">
+                            </div>
+                            <div class="cardTitle mx-3">
+                                <span class="nom">{{moto.nom}}</span>
+                                <span class="profil"><img src="{{apiImage}}{{moto.infosProprietaire?.image}}"
+                                        class="img-fluid imgPopAnnonce" alt="">
+                                </span>
+                            </div>
+                            <div class="cardTrait mb-3 mt-2"></div>
+                            <div class="cardDetails mx-3">
+                                <div class="left">
+                                    <p><img src="/assets/images/iconSvg/moteur.png" class="" alt=""> {{moto.moteur}} </p>
+                                    <p><img src="/assets/images/iconSvg/calendar.png" alt="">{{moto.annee}}</p>
+                                    <!-- <p><img src="/assets/images/iconSvg/Transmission.png" alt="">Transmission</p> -->
+                                </div>
+                                <div class="Right">
+                                    <p><img src="/assets/images/iconSvg/dashboard.png" alt="">{{moto.kilometrage}} KM</p>
+                                    <p><img src="/assets/images/iconSvg/fuel.png" alt="">{{moto.carburant}}</p>
+                                </div>
+                            </div>
+                            <p class="text-center"><img src="/assets/images/iconSvg/money.png" alt="">{{moto.prix}} Fcfa</p>
+                            <div class="cardTrait"></div>
+                            <div class="cardButton mx-3 my-3">
+                                <button class="btn fw-bold text-light" (click)="redirectToDetails(moto.id)">Consulter l'annonce</button>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bannerEnd"></section>
+
+<app-scroll-button></app-scroll-button>
+
+<app-footer></app-footer>

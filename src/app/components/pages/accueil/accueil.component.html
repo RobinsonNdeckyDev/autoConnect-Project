@@ -1,0 +1,397 @@
+<p>accueil works!</p>
+<app-navbar></app-navbar>
+<div class="bannerAccueil mt-4 ">
+
+    <div class="containBanner w-50">
+        <h1>Trouvez le bon <br> véhicule pour vous !</h1>
+        <p class="bannerP">Plateforme d'annonces de vente de véhicules 100% fiable</p>
+        <button class="btn mt-3">
+            <a class="text-decoration-none text-light fw-bold" routerLink="/login">Vendez votre véhicule</a>
+        </button>
+    </div>
+</div>
+
+<section class="annonces py-3 ">
+    <h1 class="text-center mt-3 mb-3">Les annonces les plus mises en avant</h1>
+    <div class="trait m-auto"></div>
+    <div class="carteAnnonces container mt-4">
+        <div class="row cartes m-0 g-4">
+            <div class="col-12 col-md-4" *ngFor="let voiture of annonceVoitureFiltered">
+                <div class="card shadow">
+                    <div class="cardImg mx-3">
+                        <img src="{{apiImage}}{{voiture?.image1}}" class="img-fluid imgPrinc w-100"
+                            alt="">
+                    </div>
+                    <div class="cardTitle mx-3">
+                        <span class="nom">{{voiture?.nom}}</span>
+                        <span class="profil"><img
+                                src="{{apiImage}}{{voiture.infosProprietaire?.image}}"
+                                class="img-fluid" alt=""></span>
+                    </div>
+                    <div class="cardTrait mb-3 mt-3"></div>
+                    <div class="cardDetails mx-3">
+                        <div class="left">
+                            <p><img src="/assets/images/iconSvg/moteur.png" class="" alt="">{{voiture?.moteur}}</p>
+                            <p><img src="/assets/images/iconSvg/calendar.png" alt="">{{voiture?.annee}}</p>
+                        </div>
+                        <div class="Right">
+                            <p class=""><img src="/assets/images/iconSvg/dashboard.png" alt="">{{voiture?.kilometrage}}
+                            </p>
+                            <p class=""><img src="/assets/images/iconSvg/fuel.png" alt="">{{voiture?.carburant}}</p>
+                        </div>
+                    </div>
+                    <p class="text-center"><img src="/assets/images/iconSvg/money.png" alt=""> {{voiture?.prix}} Fcfa
+                    </p>
+                    <div class="cardTrait"></div>
+                    <div class="cardButton mx-3 my-3">
+                        <button class="btn fw-bold text-light" (click)="redirectToDetailsVoiture(voiture.id)">Consulter
+                            l'annonce</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row cartes mt-5 g-4">
+            <div class="col-12 col-md-4" *ngFor="let moto of annonceMotoFiltered">
+                <div class="card shadow">
+                    <div class="cardImg mx-3">
+                        <img src="{{apiImage}}{{moto.image1}}" class="img-fluid imgPrinc w-100" alt="">
+                    </div>
+                    <div class="cardTitle mx-3">
+                        <span class="nom">{{moto.nom}}</span>
+                        <span class="profil"><img src="{{apiImage}}{{moto.infosProprietaire?.image}}"
+                                class="img-fluid" alt=""></span>
+                    </div>
+                    <div class="cardTrait mb-3 mt-3"></div>
+                    <div class="cardDetails mx-3">
+                        <div class="left">
+                            <p><img src="/assets/images/iconSvg/moteur.png" class="" alt="">{{moto.moteur}}</p>
+                            <p><img src="/assets/images/iconSvg/calendar.png" alt="">{{moto.annee}}</p>
+                            <!-- <p><img src="/assets/images/iconSvg/Transmission.png" alt="">Transmission</p> -->
+                        </div>
+                        <div class="Right">
+                            <p><img src="/assets/images/iconSvg/dashboard.png" alt="">{{moto.kilometrage}} KM</p>
+                            <p><img src="/assets/images/iconSvg/fuel.png" alt="">{{moto.carburant}}</p>
+                        </div>
+                    </div>
+                    <p class="text-center"><img src="/assets/images/iconSvg/money.png" alt=""> {{moto.prix}} Fcfa</p>
+                    <div class="cardTrait"></div>
+                    <div class="cardButton mx-3 my-3">
+                        <button class="btn fw-bold text-light" (click)="redirectToDetailsMoto(moto.id)">Consulter
+                            l'annonce</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="a_propos py-3 container ">
+    <h1 class="text-center mt-3 mb-3">A propos de nous</h1>
+    <div class="trait m-auto mb-1"></div>
+
+    <div class="row m-0 g-4">
+        <div class="col-12 col-md-6 p-5">
+            <!-- [attr.data-aos-duration]="800" [attr.data-aos-delay]="700"
+                [attr.data-aos-duration]="800" [attr.data-aos-delay]="700" -->
+            <img src="/assets/images/propos/p1.png" class="img-fluid" alt="">
+        </div>
+        <div class="col-12 col-md-6 right">
+            <div class="contentPropos">
+                <p>
+                    L'évolution rapide de notre environnement a donné lieu à une réalité où les propriétaires de
+                    véhicules, qu'il s'agisse
+                    de voitures, de motos ou de véhicules utilitaires, font face à la nécessité de trouver des moyens
+                    efficaces pour céder
+                    leurs biens.
+
+                    L'inconfort causé par la dégradation progressive des véhicules dans des garages ou sur la voie
+                    publique
+                    mais aussi la difficulté de trouver un acheteur intéressé a mis en lumière la pertinence d'une
+                    solution innovante.
+
+                    C'est dans ce contexte concret que s'inscrit notre projet, avec pour objectif de remédier à ces
+                    défis, de faciliter le
+                    processus de vente et d'achat, tout en assurant une transition fluide vers un marché plus dynamique.
+
+                </p>
+
+                <button class="mt-4 btn w-50">
+                    <a routerLink="/about">En savoir plus</a>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="blogs py-3 container ">
+    <h1 class="text-center mt-3 mb-3">Nos blogs</h1>
+    <div class="trait m-auto mb-5"></div>
+
+    <div class="row mt-5 cardBlogs g-4 mx-3">
+        <!-- [attr.data-aos-duration]="1000" [attr.data-aos-delay]="900" -->
+        <div class="col-12 shadow rounded-4 p-3" *ngFor="let blog of blogs">
+            <div class="row">
+                <div class="col-12 col-md-3">
+                    <div class="cardImg h-100 d-flex justify-content-center align-items-center">
+                        <img src="{{apiImage}}{{blog.image}}" class="img-fluid shadow rounded-4"
+                            alt="">
+                    </div>
+                </div>
+                <div class="col-12 col-md-9 contBody">
+                    <div class="cardBody p-3 mx-3 w-100 h-100">
+                        <div class="cardTitle">
+                            <h4 class="text-center"> {{blog.titre}} </h4>
+                        </div>
+                        <div class="cardDetail">
+                            <p class="textBlog">
+                                {{blog.description}}
+                            </p>
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <button class="btn mt-2" (click)="redirectToDetails(blog.id)">
+                                <!-- routerLink="/blog/detailsBlog" -->
+                                <a>En savoir plus</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="temoignages py-3 container-fluid mt-5  ">
+    <div class="content">
+        <h1 class="text-center">Que disent les gens à notre propos?</h1>
+
+        <div id="carouselExampleIndicators" class="container carousel slide">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-12 col-md-6 p-2">
+                            <div class="teams card carte mx-3">
+                                <div class="leftA"></div>
+                                <div class="teamProf">
+                                    <img src="../../../assets/images/profil/profil3.jpg" class="img-fluid" width="60px"
+                                        alt="">
+                                    <span>Mark Dasilva A</span>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur. Ornare vel urna libero lectus fringilla
+                                    tristique
+                                    neque
+                                    pellentesque
+                                    netus.
+                                    Diamenim posuere praesent a iaculis praesent ac. Massa.
+                                </p>
+                                <div class="rightB"></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 p-2">
+                            <div class="teams card carte mx-3">
+                                <div class="leftA"></div>
+                                <div class="teamProf">
+                                    <img src="../../../assets/images/profil/profil3.jpg" class="img-fluid" width="60px"
+                                        alt="">
+                                    <span>Mark Dasilva A</span>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur. Ornare vel urna libero lectus fringilla
+                                    tristique
+                                    neque
+                                    pellentesque
+                                    netus.
+                                    Diamenim posuere praesent a iaculis praesent ac. Massa.
+                                </p>
+                                <div class="rightB"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-12 col-md-6 p-2">
+                            <div class="teams carte mx-3">
+                                <div class="leftA"></div>
+                                <div class="teamProf">
+                                    <img src="../../../assets/images/profil/profil3.jpg" class="img-fluid" width="60px"
+                                        alt="">
+                                    <span>Mark Dasilva A</span>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur. Ornare vel urna libero lectus fringilla
+                                    tristique
+                                    neque
+                                    pellentesque
+                                    netus.
+                                    Diamenim posuere praesent a iaculis praesent ac. Massa.
+                                </p>
+                                <div class="rightB"></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 p-2">
+                            <div class="teams card carte mx-3">
+                                <div class="leftA"></div>
+                                <div class="teamProf">
+                                    <img src="../../../assets/images/profil/profil3.jpg" class="img-fluid" width="60px"
+                                        alt="">
+                                    <span>Mark Dasilva A</span>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur. Ornare vel urna libero lectus fringilla
+                                    tristique
+                                    neque
+                                    pellentesque
+                                    netus.
+                                    Diamenim posuere praesent a iaculis praesent ac. Massa.
+                                </p>
+                                <div class="rightB"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-12 col-md-6 p-2">
+                            <div class="teams carte mx-3">
+                                <div class="leftA"></div>
+                                <div class="teamProf">
+                                    <img src="../../../assets/images/profil/profil3.jpg" class="img-fluid" width="60px"
+                                        alt="">
+                                    <span>Mark Dasilva A</span>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur. Ornare vel urna libero lectus fringilla
+                                    tristique
+                                    neque
+                                    pellentesque
+                                    netus.
+                                    Diamenim posuere praesent a iaculis praesent ac. Massa.
+                                </p>
+                                <div class="rightB"></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 p-2">
+                            <div class="teams card carte mx-3">
+                                <div class="leftA"></div>
+                                <div class="teamProf">
+                                    <img src="../../../assets/images/profil/profil3.jpg" class="img-fluid" width="60px"
+                                        alt="">
+                                    <span>Mark Dasilva A</span>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur. Ornare vel urna libero lectus fringilla
+                                    tristique
+                                    neque
+                                    pellentesque
+                                    netus.
+                                    Diamenim posuere praesent a iaculis praesent ac. Massa.
+                                </p>
+                                <div class="rightB"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+
+    </div>
+</section>
+
+<section class="bannerAnnonce py-4 ">
+    <!-- [attr.data-aos-duration]="800" [attr.data-aos-delay]="1000" -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <p class="pBanner">Vous souhaitez vendre votre véhicule ? <br> N'attendez-plus !</p>
+            </div>
+            <div class="col-12 col-md-6 ">
+
+                <div class="btnAnnonce">
+                    <button class="btn mt-3 p-2">
+                        <a routerLink="/login">Publier une annonce</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact py-5 ">
+    <!-- [attr.data-aos]="'fade-in'" [attr.data-aos-duration]="800" [attr.data-aos-delay]="1000" -->
+    <div class="containContact container">
+        <div class="row">
+            <div class="col-12 col-md-6 p-4">
+                <div class="formContent">
+                    <div class="">
+                        <h4 class="text-center mb-3">Contactez-nous</h4>
+                        <form action="" class="" (ngSubmit)="addContact()">
+                            <div class="mb-3">
+                                <label for="nomComplet">Nom complet</label>
+                                <input type="text" class="form-control" id="nomComplet" name="nomComplet"
+                                    [(ngModel)]="nomComplet" (input)="validateNomComplet()">
+                                <span *ngIf="nomCompletTouched && nomCompletEmpty && !validationMessages['nomComplet']"
+                                    class="text-danger">
+                                    Le nom au complet est requis
+                                </span>
+                                <span *ngIf="validationMessages['nomComplet']" class="text-danger">{{
+                                    validationMessages['nomComplet'] }}</span>
+                                <span *ngIf="!validationMessages['nomComplet'] && nomComplet"
+                                    class="text-success">Correct</span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email"
+                                    (input)="validateEmail()">
+                                <span *ngIf="emailTouched && emailEmpty && !validationMessages['email']"
+                                    class="text-danger">
+                                    L'email est requis
+                                </span>
+                                <span *ngIf="validationMessages['email']" class="text-danger">{{
+                                    validationMessages['email'] }}</span>
+                                <span *ngIf="!validationMessages['email'] && email" class="text-success">Correct</span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message">Message</label>
+                                <textarea name="message" id="message" rows="5" class="form-control"
+                                    [(ngModel)]="message" (input)="validateMessage()"></textarea>
+                                <span *ngIf="messageTouched && messageEmpty && !validationMessages['message']"
+                                    class="text-danger">
+                                    Le message est requis
+                                </span>
+                                <span *ngIf="validationMessages['message']" class="text-danger">{{
+                                    validationMessages['message'] }}</span>
+                                <span *ngIf="!validationMessages['message'] && message"
+                                    class="text-success">Correct</span>
+                            </div>
+
+                            <div class="mt-4 d-flex justify-content-center align-content-center">
+                                <button class="btn w-50 p-2 rounded-4" [disabled]="!email || !message || !nomComplet">
+                                    Envoyer
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 p-0">
+                <img src="/assets/images/contact/c1.png" class="img-fluid h-100" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-scroll-button></app-scroll-button>
+
+<!-- <app-scroll-button></app-scroll-button> -->
+<app-footer></app-footer>

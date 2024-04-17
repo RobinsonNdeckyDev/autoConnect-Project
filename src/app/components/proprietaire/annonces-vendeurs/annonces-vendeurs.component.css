@@ -1,0 +1,439 @@
+.navTitle a {
+    color: #0F42A8;
+    text-decoration: none;
+}
+
+.modal-header{
+    border-bottom: 2px solid #0F42A8 !important;
+
+}
+
+.text-chargement {
+    color: #0F42A8;
+    margin-top: 20px;
+    margin-left: 25px;
+}
+
+.avis .headL {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.avis .headL img {
+    margin-right: 8px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #0F42A8;
+}
+
+.contentRight {
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+}
+
+.contentRight span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentRight span i {
+    font-size: 30px;
+    color: #0F42A8;
+    cursor: pointer;
+}
+
+.imgSlide{
+    height: 300px;
+}
+
+.imgProfil{
+    border: 2px solid #0F42A8;
+}
+
+.modal-header h1{
+    color: #0F42A8;
+}
+
+.modal-header span i {
+    color: #0F42A8;
+    font-size: 25px;
+}
+
+.modal-body .infosP{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-footer{
+    border-top: 2px solid #0F42A8 !important;
+}
+
+.imgAnnonce{
+    height: 100px;
+    cursor: pointer;
+}
+
+/* .cars{
+    height: 80vh;
+} */
+
+.headerBlog {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerBlog button {
+    background-color: #0F42A8;
+    color: white;
+}
+
+/* .search {
+    border: 1px solid red;
+    width: 25%;
+    position: relative;
+    right: 0 !important;
+    left: 75%;
+} */
+
+.iconhand {
+    color: #0F42A8;
+    font-size: 18px;
+    margin-right: 15px;
+}
+
+.annoncesHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.annoncesHead button {
+    color: #0F42A8;
+    font-weight: 600;
+    padding: 5px 20px;
+    border: 1px solid #0F42A8;
+}
+
+.annoncesHead button:hover {
+    background-color: #0F42A8;
+    color: white;
+    border: none;
+    position: relative;
+    bottom: 2px;
+}
+
+.search .searchIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0F42A8;
+    padding: 0 15px;
+}
+
+.search .searchIcon i {
+    color: white;
+    font-size: 18px;
+}
+
+.pagine ul {
+    border: none !important;
+}
+
+.pagine ul li {
+    border: none !important;
+}
+
+.card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-head .nomCar {
+    color: #0F42A8;
+}
+
+.card-head img {
+    background-color: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.card-body button {
+    background-color: #0F42A8;
+    width: 100%;
+    margin-top: 15px;
+    padding: 0;
+    color: white;
+}
+
+.card-body button a{
+    color: white;
+    text-decoration: none;
+}
+
+.card-body img{
+    height: 160px;
+    width: 100%;
+}
+
+
+
+
+/* Modal details */
+
+.profilContain h3 a {
+    text-decoration: none;
+    color: #0F42A8;
+}
+
+.profilhead h3 {
+    color: #0F42A8;
+}
+
+hr {
+    background-color: #0F42A8;
+    border: 0;
+    height: 2px;
+}
+
+.contentL {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.contentL span {
+    font-weight: 500;
+    margin-left: 30px;
+    font-size: 18px;
+    color: #0F42A8;
+}
+
+.text-detail p {
+    text-align: justify;
+    font-weight: lighter;
+}
+
+.contentR {
+    background-color: #0F42A8;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.contentR p {
+    font-weight: 400;
+    color: white;
+}
+
+.contentR .iconsprop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 40px; */
+    width: 60%;
+    background-color: white;
+    padding: 5px 20px;
+    border-radius: 20px;
+    margin: 0 auto;
+}
+
+.contentR .iconsprop span {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #0F42A8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.contentR .iconsprop span i {
+    color: white;
+    font-size: 20px;
+}
+
+.middleDetail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.middleDetail span {
+    font-size: 20px;
+    font-weight: 500;
+    color: #0F42A8;
+}
+
+.middleDetail button {
+    background-color: black;
+    color: white;
+    padding: 8px 20px;
+    font-weight: bold;
+}
+
+.caracteristiques{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+}
+
+.contentDetail .libelle {
+    color: #0F42A8;
+    font-weight: 400;
+    /* width: 30%;
+    margin-right: 30px; */
+}
+
+.contentDetail .infosV {
+    border: 1px solid #0F42A8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+    padding: 3% 2%;
+    margin: 0;
+}
+
+.contentDetail .infosV span{
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+.contentDetail .infosV p{
+    margin: 0;
+}
+
+.positionR {
+    position: relative;
+}
+
+.boutons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.boutons .btnBlue {
+    background-color: #0F42A8;
+    color: white;
+    padding: 5px 20px;
+}
+
+.boutons .btnBlack {
+    background-color: black;
+    color: white;
+    padding: 5px 20px;
+}
+
+.boutons .btnBlack a {
+    text-decoration: none;
+    color: white;
+}
+
+
+.imagesSecondaires {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.imagesSecondaires img {
+    width: 250px;
+    height: 160px;
+    border-radius: 20px;
+}
+
+
+.imagesSecondaires .imgs img {
+    width: 100%;
+}
+
+
+/* *****************************************************CSS modification annonce****************************************** */
+
+.publishAnnonceContain h2 {
+    color: #0F42A8;
+    font-weight: 700;
+}
+
+.publishAnnonceContain h2 span {
+    color: red;
+}
+
+.formPublish h5 {
+    color: black;
+    font-weight: 600;
+}
+
+.formPublish label {
+    color: #0F42A8;
+}
+
+.exampleModalInvalide .profilBody .active{
+    color: #0F42A8;
+}
+
+
+.bannerContent {
+    /* border: 1px solid red; */
+    background-image: url(/assets/images/banner/bannerPublish.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    backdrop-filter: brightness(0.5);
+    border-radius: 20px;
+    padding: 2%;
+    /* opacity: -1; */
+}
+
+.bannerContent::before {
+    filter: brightness(1);
+    z-index: -1;
+}
+
+.bannerContent h5 {
+    margin: 8% 0;
+    text-transform: uppercase;
+    color: white !important;
+}
+
+.btnPublier {
+    background-color: #0F42A8 !important;
+    color: white;
+}
+
+.trait {
+    width: 150px;
+    margin: 0 auto;
+    border: 2px solid #0F42A8;
+}
+
+
+@media only screen and (max-width: 1000px) {
+    .annoncesHead {
+        display: block;
+    }
+
+    /* .annoncesHead button {
+        color: #0F42A8;
+        font-weight: 600;
+        padding: 5px 20px;
+        border: 1px solid #0F42A8;
+    }
+
+    .annoncesHead button:hover {
+        background-color: #0F42A8;
+        color: white;
+        border: none;
+        position: relative;
+        bottom: 2px;
+    } */
+}

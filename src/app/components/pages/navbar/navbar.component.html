@@ -1,0 +1,38 @@
+<div class="Navigation fixed-top">
+    <nav class="navbar navbar-expand-md">
+        <div class="container-fluid">
+            <a class="navbar-brand logo" routerLink="/accueil">
+                <img src="../../../assets/images/logo2-removebg-preview.png" class="img-fluid" alt="">
+            </a>
+            <button class="navbar-toggler burger collapsed text-white" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navigationMenu" aria-controls="navigationMenu" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class=""><i class="fa-solid fa-bars"></i></span>
+            </button>
+
+            <div class="navbar-collapse collapse " id="navigationMenu">
+                <ul class="navbar-nav mx-auto justify-content-center mb-lg-0">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" routerLinkActive="activeLink" routerLink="/accueil">Accueil</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" routerLinkActive="activeLink" routerLink="/about">A propos</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" routerLinkActive="activeLink" routerLink="/vehicules">Véhicules</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" routerLinkActive="activeLink" routerLink="/blog">Blog</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" routerLinkActive="activeLink" routerLink="/contact">Contact</a>
+                    </li>
+                </ul>
+                <app-login-user *ngIf="!isLoggedIn()"></app-login-user>
+                <app-logout-user *ngIf="isLoggedIn()"></app-logout-user>
+
+            </div>
+
+        </div>
+    </nav>
+</div>

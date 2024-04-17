@@ -1,0 +1,141 @@
+<app-navbar></app-navbar>
+ 
+<section class="blogbanner mt-5">
+    <!-- <img src="../../../../assets/images/blogs/ban1.png" class="img-fluid" alt=""> -->
+</section>
+
+<section class="py-3 blog1">
+    <div class="container blog1Contain">
+        <h2 class="text-center my-3">Consulter nos blogs</h2>
+        <div class="trait mb-4"></div>
+
+        <div class="row mt-5 cardBlogs" [attr.data-aos]="'fade-up'" [attr.data-aos-duration]="800" [attr.data-aos-delay]="500">
+            <div class="col-12 col-md-4 p-3" *ngFor="let blog of blogs">
+                <div class="card px-3 shadow">
+                    <div class="cardImg mt-3">
+                        <img src="{{apiImage}}{{blog.image}}" class="img-fluid shadow rounded-4" alt="">
+                    </div>
+                    <div class="card cardBody h-100 p-3 mx-3">
+                        <div class="cardTitle">
+                            <h4 class="text-center"> {{blog.titre}} </h4>
+                        </div>
+                        <div class="cardDetail h-100">
+                            <p class="textBlog">
+                               {{blog.description}}
+                            </p>
+                        </div>
+        
+                        <button class="btn mt-2" (click)="redirectToDetails(blog.id)">
+                            <a>En savoir plus</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py3 blog2 mt-3">
+    <div class="container blog2Contain">
+        <h2 class="text-center my-3">Autres</h2>
+        <div class="trait mb-5"></div>
+
+        <div class="card shadow p-2 mb-4" [attr.data-aos]="'fade-up'" [attr.data-aos-duration]="800" [attr.data-aos-delay]="500">
+            <div class="row autresBlogs">
+                <div class="col-12 col-md-5 p-3">
+                    <img src="/assets/images/blogs/Autre1.png" class="img-fluid" alt="">
+                </div>
+                <div class="col-12 col-md-7 blogDetail p-3">
+                    <div class="">
+                        <h3 class="mb-3">Vendre votre véhicule avec succés</h3>
+                        <p class="mb-3 pAutre">
+                            La vente de votre véhicule peut être une étape importante, que ce soit pour passer à un nouveau modèle ou
+                            pour des
+                            raisons personnelles. Pour vous aider à naviguer à travers ce processus, voici un guide complet pour vendre
+                            votre
+                            véhicule avec succès.
+                        </p>
+                        <button class="btn mt-4">
+                            <a routerLink="detailsBlog">En savoir plus</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow p-2 mb-4" [attr.data-aos]="'fade-in'" [attr.data-aos-duration]="800" [attr.data-aos-delay]="800">
+            <div class="row autresBlogs">
+                <div class="col-12 col-md-7 blogDetail p-3">
+                    <div class="">
+                        <h3 class="mb-3">Vendre votre véhicule avec succés</h3>
+                        <p class="mb-3 pAutre">
+                            La vente de votre véhicule peut être une étape importante, que ce soit pour passer à un nouveau
+                            modèle ou
+                            pour des
+                            raisons personnelles. Pour vous aider à naviguer à travers ce processus, voici un guide complet pour
+                            vendre
+                            votre
+                            véhicule avec succès.
+                        </p>
+                        <button class="btn mt-4">
+                            <a routerLink="detailsBlog">En savoir plus</a>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-12 col-md-5 p-3">
+                    <img src="/assets/images/blogs/Autre2.png" class="img-fluid" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow p-2 mb-4" [attr.data-aos]="'fade-in'" [attr.data-aos-duration]="800" [attr.data-aos-delay]="1000">
+            <div class="row autresBlogs">
+                <div class="col-12 col-md-5 p-3">
+                    <img src="/assets/images/blogs/Autre3.png" class="img-fluid" alt="">
+                </div>
+                <div class="col-12 col-md-7 blogDetail p-3">
+                    <div class="">
+                        <h3 class="mb-3">Vendre votre véhicule avec succés</h3>
+                        <p class="mb-3 pAutre">
+                            La vente de votre véhicule peut être une étape importante, que ce soit pour passer à un nouveau
+                            modèle ou
+                            pour des
+                            raisons personnelles. Pour vous aider à naviguer à travers ce processus, voici un guide complet pour
+                            vendre votre véhicule avec succès.
+                        </p>
+                        <button class="btn mt-4">
+                            <a routerLink="detailsBlog">En savoir plus</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="nouveaute py-3 mt-4">
+    <div class="nouveauteContain container">
+        <h2 class="text-center mb-3 mt-4">Nouveauté</h2>
+
+        <div class="row carteNew mb-4 g-4">
+            <div class="col-12 CN col-md-4 p-4">
+                <img src="/assets/images/blogs/new1.webp" class="img-fluid w-100 h-100" alt="">
+                <span>Range rover</span>
+            </div>
+            <div class="col-12 CN col-md-4 p-4">
+                <img src="/assets/images/blogs/new2.webp" class="img-fluid w-100 h-100" alt="">
+                <span>Jeep renegade</span>
+            </div>
+            <div class="col-12 CN col-md-4 p-4">
+                <img src="/assets/images/blogs/new3.avif" class="img-fluid w-100 h-100" alt="">
+                <span>Fourgonnette GMC</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bannerEnd"></section>
+
+<app-scroll-button></app-scroll-button>
+
+<app-footer></app-footer>

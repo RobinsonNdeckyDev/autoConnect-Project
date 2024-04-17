@@ -1,0 +1,27 @@
+<div class="Navbar d-flex justify-content-between">
+    <div class="navLeft d-flex">
+        <div class="imgLogo">
+            <img src="../../../../assets/images/logo2-removebg-preview.png" class="img-fluid" alt="">
+        </div>
+        <div class="burger">
+            <i class="fa fa-bars" (click)="toggleSidebar()"></i>
+        </div>
+    </div>
+    
+    <div class="rightNav">
+
+        <!-- Example single danger button -->
+        <div class="dropdown-center m-0 p-0">
+            <button type="button" class="btn m-0 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="../../../../assets/images/profil/profil2.jpg" class="" alt="">
+                <span>{{userConnected?.prenom}}</span>
+            </button>
+            <ul class="dropdown-menu mt-3">
+                <li><a class="dropdown-item" routerLink="profil_Admin">Mon profil</a></li>
+                <li class=""><app-logout-admin></app-logout-admin></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+

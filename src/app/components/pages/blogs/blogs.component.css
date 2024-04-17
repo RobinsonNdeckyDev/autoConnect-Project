@@ -1,0 +1,168 @@
+/* ../../../.. */
+.blogbanner{
+    background-image: url(/assets/images/blogs/bgBlog.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding: 22% 0;
+}
+
+.blog1 .blog1Contain h2{
+    color: #0F42A8;
+}
+
+.blog1 .blog1Contain .trait{
+    width: 150px;
+    margin: 0 auto;
+    border: 2px solid #0F42A8;
+}
+
+.blog1 .cardBlogs .card {
+    border: none;
+    border-radius: 20px;
+    border-bottom: 8px solid #0F42A8;
+}
+
+.blog1 .cardBlogs .cardImg img{
+    height: 30vh;
+    width: 100%;
+}
+
+.blog1 .cardBody {
+    position: relative;
+    bottom: 25px;
+    background-color: #0F42A8;
+    border-radius: 15px;
+}
+
+.blog1 .cardBody:hover {
+    bottom: 5px;
+    transition: 2s ease;
+}
+
+.blog1 .cardBody:hover button {
+    background-color: black;
+    color: white;
+}
+
+.blog1 .cardBody:hover button a {
+    color: white;
+}
+
+.blog1 .card:hover {
+    border-top: 5px solid #0F42A8;
+    transition: 2s ease;
+}
+
+.blog1 .cardBody h4{
+    color: white;
+}
+
+.blog1 .cardBody .textBlog {
+    height: 15vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: justify;
+    margin-top: 5px;
+    font-weight: lighter;
+    color: white;
+}
+
+
+.blog1 .cardBody button {
+    background-color: white;
+    border-radius: 15px 0;
+}
+
+.blog1 .cardBody button a {
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+}
+
+
+.blog2 .blog2Contain h2 {
+    color: #0F42A8;
+}
+
+.blog2 .blog2Contain .trait {
+    width: 150px;
+    margin: 0 auto;
+    border: 2px solid #0F42A8;
+}
+
+.blog2 .autresBlogs .blogDetail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blog2 .autresBlogs .blogDetail h3{
+    color: #0F42A8;
+}
+
+.blog2 .autresBlogs .blogDetail p{
+    font-weight: lighter;
+}
+
+.blog2 .autresBlogs .blogDetail button{
+    background-color: #0F42A8;
+}
+
+.blog2 .autresBlogs .blogDetail button:hover{
+    background-color: black;
+    transition: 1s ease;
+}
+
+.blog2 .autresBlogs .blogDetail button a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.nouveaute{
+    background-color: black;
+    margin-top: 20px !important;
+}
+
+.nouveaute .nouveauteContain h2{
+    color: white;
+    margin-bottom: 15px;
+}
+
+.nouveaute .carteNew .CN{
+    position: relative;
+}
+
+.nouveaute .carteNew img{
+    border-radius: 10px;
+}
+
+.nouveaute .carteNew span{
+    position: absolute;
+    bottom: 30px;
+    right: 24px;
+    background-color: #0F42A8;
+    /* padding: 4p; */
+    padding: 3px;
+    color: white;
+    width: 40%;
+    text-align: center;
+}
+
+.bannerEnd {
+    background-image: url(/assets/images/vehicules/ban2.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding: 15% 0;
+}
+
+@media only screen and (min-width: 168px) and (max-width: 767px) {
+    .blog2 .blog2Contain .autresBlogs h3{
+        text-align: center;
+    }
+
+    .blog2 .blog2Contain .autresBlogs .pAutre{
+        text-align: justify;
+    }
+
+}

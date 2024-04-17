@@ -1,0 +1,65 @@
+/* .progress-bar {
+    transition: width 0.3s ease;
+} */
+
+.progress-bar {
+    width: 100%;
+}
+
+
+.publishAnnonceContain h2{
+    color: #0F42A8;
+    font-weight: 700;
+}
+
+.publishAnnonceContain h2 span{
+    color: red;
+}
+
+.formPublish h5{
+    color: black;
+    font-weight: 600;
+}
+
+.formPublish label{
+    color: #0F42A8;
+}
+
+
+.bannerContent{
+    /* border: 1px solid red; */
+    background-image: url(/assets/images/banner/bannerPublish.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    backdrop-filter: brightness(0.5);
+    border-radius: 20px;
+    padding: 2%;
+    /* opacity: -1; */
+}
+
+.bannerContent::before{
+    filter: brightness(1);
+    z-index: -1;
+}
+
+.bannerContent h5{
+    margin: 8% 0;
+    text-transform: uppercase;
+    color: white !important;
+}
+
+.btnPublier{
+    background-color: #0F42A8 !important;
+    color: white;
+}
+
+.btnDark {
+    background-color: black !important;
+    color: white;
+}
+
+.trait{
+    width: 150px;
+    margin: 0 auto;
+    border: 2px solid #0F42A8;
+}

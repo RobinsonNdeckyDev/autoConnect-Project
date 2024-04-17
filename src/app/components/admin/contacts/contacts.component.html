@@ -1,0 +1,66 @@
+<div class="contactContainer py-4 mx-4">
+    <h3 class="mb-3"><a href="">Messages /</a></h3>
+
+    <div class="row mt-4 shadow rounded-4">
+        <div class="col-12 px-3 py-4">
+
+            <div *ngIf="isLoading">
+                <!-- Attendez que les données soient chargées -->
+                <p class="fw-lighter fw-bold"> <span class="text-chargement">Chargement en cours...</span></p>
+            </div>
+
+            <div *ngIf="!isLoading && messages.length === 0">
+                <p class="fw-lighter px-2"> <span class="text-chargement">Oops!</span> Pas de messages disponibles pour l'instant...</p>
+            </div>
+           
+            <div class="table-responsive" *ngIf="!isLoading && messages.length > 0">
+                <table class="table mb-3" datatable [dtOptions]="dtOptions" class="table row-border hover w-100" *ngIf="messages.length > 0">
+                    <thead class="">
+                        <tr class="titreTab fw-light">
+                            <th scope="col" class="text-center">Nom complet</th>
+                            <th scope="col" class="text-center">Email</th>
+                            <!-- <th scope="col" class="text-center">Message</th> -->
+                            <th scope="col" class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="fs-6 text-center" *ngFor="let message of messages">
+                            <td scope="col"> {{message.nomComplet}} </td>
+                            <td scope="col"> {{message.email}} </td>
+                            <!-- <td scope="col">
+                                <p>
+                                    {{message.message}}
+                                </p>
+                            </td> -->
+                            <td scope="col" class="detailIcon">
+                                <span class="mx-2 py-0"><i class="fa-solid fa-eye" data-bs-toggle="modal" data-bs-target="#detailMessage" (click)="openModal(message)"></i></span>
+                                <span class="mx-2"><i class="bi bi-x-square-fill" (click)="supprimerMessage(message.id)"></i></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal pour afficher le contenu du message -->
+<div class="modal fade" id="detailMessage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header shadow">
+                <h5 class="modal-title fs-5" id="exampleModalLabel">Detail du message</h5>
+                <span type="button" class="btnCloseModal" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i></span>
+            </div>
+            <div class="modal-body my-4">
+                <p>{{ selectedMessage?.message }}</p>
+            </div>
+            <div class="modal-footer shadow d-flex justify-content-center">
+                <button type="button" class="btn btnFermer" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>

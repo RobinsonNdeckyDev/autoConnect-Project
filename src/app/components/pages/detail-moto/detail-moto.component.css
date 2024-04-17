@@ -1,0 +1,524 @@
+.banDetailVoiture {
+    position: relative;
+    background-image: url(/assets/banrect1.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding: 21% 0;
+}
+
+.contentDetail .caracteristiques .infosV .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3% 0;
+}
+
+.contentDetail .caracteristiques .infosV .card:hover {
+    position: relative;
+    bottom: 8px;
+    background-color: #0F42A8;
+    border: 1px solid white;
+    transition: 1s ease;
+}
+
+.contentDetail .caracteristiques .infosV .card:hover .libelle {
+    color: white;
+    font-weight: 600;
+}
+
+.contentDetail .caracteristiques .infosV .card:hover .value {
+    color: white;
+}
+
+.contentDetail .caracteristiques .infosV .card .libelle {
+    color: #0F42A8;
+    font-weight: 500;
+}
+
+.contentDetail .caracteristiques .infosV .card .value {
+    font-size: 14px;
+    font-weight: lighter;
+    margin: 0;
+}
+
+.contentDetail .description .libelle {
+    color: #0F42A8;
+    font-weight: 500;
+}
+
+.contentDetail .description .value {
+    font-size: 14px;
+    font-weight: lighter;
+    margin: 0;
+}
+
+.middleDetail h4 {
+    color: #0F42A8;
+}
+
+.detailAnnonce .ligneCrts {
+    background-color: #0F42A8;
+    border: 0;
+    height: 2px;
+}
+
+.imgPrinc {
+    height: 180px;
+}
+
+.detailAnnonce h2 {
+    color: #0F42A8;
+}
+
+.detailAnnonce .trait {
+    width: 150px;
+    border: 2px solid #0F42A8;
+    margin: 0 auto;
+}
+
+.bandeAnnonce {
+    background-color: black;
+}
+
+.banContain {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.banContain span {
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* .contentLf .imgVehicule{
+    border: 1px solid red;
+} */
+
+.contentLf .imgVehicule img {
+    width: 100%;
+    height: 300px;
+    border-radius: 25px;
+}
+
+.contentLf .blockImg {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contentLf .blockImg img {
+    width: 22%;
+    border-radius: 18px;
+}
+
+.contentLf .alert {
+    background-color: #0F42A8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: O 15px;
+}
+
+.contentLf .alert span {
+    color: white;
+}
+
+.contentLf .alert .btn {
+    background-color: white;
+    color: black;
+}
+
+.contentLr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contentLr img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+}
+
+.contentLr .infosProp .location,
+.phone,
+.email {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentLr .infosProp .icon {
+    margin-right: 15px;
+}
+
+.sociauxProp {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sociauxProp .iconSProp {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin: 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0F42A8;
+}
+
+.sociauxProp .iconSProp i {
+    color: white;
+    font-size: 18px;
+}
+
+
+.titreInfo {
+    color: #0F42A8;
+}
+
+.presentation {
+    text-align: justify;
+    font-weight: lighter;
+}
+
+.caracteristique .ctsVehicule button {
+    background-color: #0F42A8;
+    color: white;
+    margin: O 15px !important;
+}
+
+.caracteristique .ctsVehicule button img {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+}
+
+.caracteristique .ctsVehicule .textCont {
+    text-align: justify;
+    font-weight: 300;
+}
+
+.comments {
+    background-color: #0F42A8;
+}
+
+.commentsContain h3 {
+    color: white;
+}
+
+.commentsContain hr {
+    color: white;
+    height: 3px;
+}
+
+.commentsContain .avis .headC {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.commentsContain .avis .headL img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.commentsContain .avis .headL .nomC {
+    color: white;
+    font-weight: 400;
+}
+
+.commentsContain .avis .headL .stars {
+    display: flex;
+}
+
+.commentsContain .avis .headC .stars i {
+    color: gold;
+}
+
+.commentsContain .avis .textC {
+    color: white;
+    margin-top: 5px;
+    text-align: justify;
+    font-weight: 300;
+}
+
+.commentsContain .comtRighr {
+    display: flex;
+    flex-direction: column;
+}
+
+.commentsContain .comtRighr img {
+    border-radius: 20px;
+}
+
+.commentsContain .comtRighr button {
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.alerte button {
+    background-color: red;
+    color: white;
+    font-weight: 700;
+    padding: 5px 20px;
+    border-radius: 20px;
+}
+
+.carteAnnonces .carteAnnonces .card {
+    border: none;
+    border-radius: 20px;
+}
+
+.carteAnnonces .cardImg {
+    margin-top: 15px;
+}
+
+.carteAnnonces .carteAnnonces .card:hover {
+    position: relative;
+    bottom: 20px;
+    border-bottom: 2px solid black;
+    transition: 4s ease;
+}
+
+.carteAnnonces .cardImg {
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.carteAnnonces .cardImg img {
+    border-radius: 15px;
+}
+
+.carteAnnonces .cardTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.carteAnnonces .cardTitle .nom {
+    color: #0F42A8;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.carteAnnonces .cardTitle .profil {
+    border-radius: 50%;
+    padding: 1%;
+    background-color: #0F42A8;
+}
+
+.carteAnnonces .cardTitle .profil img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.carteAnnonces .cardTrait {
+    border: 2px solid black;
+}
+
+.carteAnnonces .cardDetails {
+    display: flex;
+    justify-content: space-between;
+}
+
+.carteAnnonces .cardDetails img {
+    margin-right: 20px;
+    width: 30px;
+
+}
+
+.carteAnnonces .cardButton button {
+    background-color: #0F42A8;
+    padding: 1%;
+    width: 100%;
+    border-radius: 18px 0;
+}
+
+.carteAnnonces .cardButton button:hover {
+    background-color: black;
+    transition: 1s ease;
+}
+
+.carteAnnonces .cardButton button a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.cartes .vhls {
+    margin-bottom: 0;
+}
+
+.cartes .vhls a {
+    color: #0F42A8;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.cartes .vhls a:hover {
+    color: black;
+    letter-spacing: 4px;
+}
+
+.cartes .card:hover {
+    position: relative;
+    bottom: 10px;
+    border-bottom: 3px solid black;
+    transition: 2s ease;
+}
+
+.bannerEnd {
+    background-image: url(/assets/images/vehicules/ban2.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding: 15% 0;
+}
+
+.alertSignal {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.alertSignal .btns {
+    width: 40%;
+    margin: 0 auto;
+}
+
+.alertSignal .btns button {
+    padding: 5px 15px;
+}
+
+.alertSignal .btns .btnYes {
+    background-color: #0F42A8;
+    color: white;
+    font-weight: bold;
+}
+
+.alertSignal .btns .btnNo {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+.btnForm button {
+    padding: 5px 15px;
+}
+
+.btnsForm .btnSignal {
+    background-color: #0F42A8;
+    color: white;
+}
+
+.btnsForm .btnOff {
+    background-color: black;
+    color: white;
+}
+
+#formSignal .modal-content .modal-header {
+    border-bottom: 2px solid #0F42A8;
+}
+
+#formSignal .modal-content .modal-header h1 {
+    color: #0F42A8;
+    font-weight: bold;
+}
+
+#formSignal .modal-content .modal-header button i {
+    font-size: 25px;
+    color: #0F42A8;
+}
+
+#formComment .modal-content .modal-header {
+    border-bottom: 2px solid #0F42A8;
+}
+
+#formComment .modal-content .modal-header h1 {
+    color: #0F42A8;
+    font-weight: bold;
+}
+
+#formComment .modal-content .modal-header button i {
+    font-size: 25px;
+    color: #0F42A8;
+}
+
+#prudence .prudenceContain h3 {
+    color: #0F42A8;
+    font-weight: bold;
+}
+
+#prudence .prudenceContain .textPrudence {
+    text-align: center;
+    font-weight: lighter;
+}
+
+#prudence .prudenceContain button {
+    background-color: #0F42A8;
+    color: white;
+    padding: 5px 8px;
+}
+
+#prudence .modal-content .modal-header h1 {
+    color: #0F42A8;
+    font-weight: bold;
+}
+
+#prudence .modal-content .modal-header button i {
+    font-size: 25px;
+    color: #0F42A8;
+}
+
+@media only screen and (max-width: 500px) {
+    .contentLf .imgVehicule img {
+        width: 100%;
+        height: 150px;
+        border-radius: 25px;
+    }
+
+    .contentLf .blockImg {
+        display: none;
+    }
+
+    .contentLf .alert {
+        background-color: #0F42A8;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .contentLf .alert span {
+        margin-bottom: 8px;
+    }
+
+    .btnComment {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 501px) and (max-width: 950px) {
+    .contentLf .imgVehicule img {
+        width: 100%;
+        height: 250px;
+        border-radius: 25px;
+        /* border: 1px solid red; */
+    }
+}

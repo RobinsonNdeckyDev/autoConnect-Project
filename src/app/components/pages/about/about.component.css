@@ -1,0 +1,85 @@
+.bannerPropos{
+    background-image: url(/assets/images/propos/banprop.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+   padding: 23% 0;
+}
+
+.propos1 h1{
+    color: #0F42A8;
+}
+
+.propos1 .trait{
+    width: 150px;
+    border: 2px solid #0F42A8;
+    margin: 0 auto;
+}
+
+.propos1 .propos1Contain .propsA{
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.propos1 .propos1Contain .propsA p{
+    text-align: justify;
+}
+
+.propos2{
+    background-color: #0F42A8;
+}
+
+.propos2 .propos2Contain .left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.propos2 .propos2Contain .left h2{
+    color: white;
+    font-size: 70px;
+    margin-bottom: 25px;
+}
+
+.propos2 .propos2Contain .left p{
+    color: white;
+    font-weight: 400;
+    text-align: justify;
+}
+
+.propos .propos2Contain .right img{
+    width: 250px !important;
+    height: 250px;
+}
+
+/* .objectifs{
+    background-image: url(/assets/images/propos/p6.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding: 20% 0;
+} */
+
+.questions h2{
+    color: #0F42A8;
+}
+
+.questions .trait{
+    width: 150px;
+    margin: 0 auto;
+    border: 2px solid #0F42A8;
+}
+
+.questions .questionsContain .qst{
+    margin: 5% 0;
+}
+
+.questions .questionsContain .accordion-header{
+    background: none !important;
+}
+
+@media only screen and (min-width: 168px) and (max-width: 767px) {
+    .propos2 .propos2Contain .left h2{
+        font-size: 18px;
+    }
+}

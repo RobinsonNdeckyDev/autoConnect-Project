@@ -1,0 +1,119 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/* .connect{
+    margin-top: 2%;
+    margin-bottom: 0;
+} */
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* overflow: hidden; */
+}
+
+.login .loginContain .formulaire a {
+    margin-bottom: 5%;
+}
+
+.login .loginContain .formulaire a img {
+    width: 18%;
+}
+
+.connect {
+    width: 75%;
+}
+
+.connect .row {
+    border-radius: 15px;
+}
+
+.connect .row .profilImg {
+    border-radius: 0 15px 15px 0;
+}
+
+.formulaire {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid blue; */
+}
+
+.formulaire h2 {
+    color: #0F42A8;
+}
+
+.formulaire .inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulaire .mdpOff a {
+    text-decoration: none;
+    color: #0F42A8;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.formulaire .bouton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.formulaire .bouton button {
+    background-color: #0F42A8;
+    color: white;
+    font-weight: 700;
+}
+
+
+.formulaire .inscription {
+    margin-top: 25px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.btnFStep{
+    background-color: #0F42A8;
+    color: white;
+}
+
+.btnFStepDanger{
+    background-color: #eb0404;
+    color: white;
+}
+
+.btnFStepBlack{
+    background-color: #030303;
+    color: white;
+}
+
+.formulaire .inscription a {
+    color: #0F42A8;
+}
+
+.profilImg {
+    width: 100%;
+    /* border: 1px solid red; */
+}
+
+
+/* media screen */
+@media only screen and (max-width: 768px) {
+    .login{
+        padding: 25px 0 !important;
+    }
+    .connect{
+        width: 80%;
+    }
+}
+
+
+/* Formulaire step by step */
+

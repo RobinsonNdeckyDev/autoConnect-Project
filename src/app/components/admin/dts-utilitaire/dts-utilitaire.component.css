@@ -1,0 +1,131 @@
+.profilContain h3 a {
+    text-decoration: none;
+    color: #0F42A8;
+}
+
+.profilhead h3 {
+    color: #0F42A8;
+}
+
+hr {
+    background-color: #0F42A8;
+    border: 0;
+    height: 2px;
+}
+
+.contentL {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.contentL span {
+    font-weight: 500;
+    margin-left: 30px;
+    font-size: 18px;
+    color: #0F42A8;
+}
+
+.text-detail p {
+    text-align: justify;
+    font-weight: lighter;
+}
+
+.contentR {
+    background-color: #0F42A8;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.contentR p {
+    font-weight: 400;
+    color: white;
+}
+
+.contentR .iconsprop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 40px; */
+    width: 60%;
+    background-color: white;
+    padding: 5px 20px;
+    border-radius: 20px;
+    margin: 0 auto;
+}
+
+.contentR .iconsprop span {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #0F42A8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.contentR .iconsprop span i {
+    color: white;
+    font-size: 20px;
+}
+
+.middleDetail {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.middleDetail span {
+    font-size: 20px;
+    font-weight: 500;
+    color: #0F42A8;
+}
+
+.middleDetail button {
+    background-color: black;
+    color: white;
+    padding: 8px 20px;
+    font-weight: bold;
+}
+
+.contentDetail .libelle {
+    color: #0F42A8;
+    font-weight: 400;
+    width: 30%;
+    margin-right: 30px;
+}
+
+.contentDetail .infosV {
+    display: flex;
+}
+
+.positionR {
+    position: relative;
+}
+
+.boutons {
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: space-between;
+    margin-left: 40%;
+    position: relative;
+    top: 80%;
+}
+
+.boutons .btnBlue {
+    background-color: #0F42A8;
+    color: white;
+    padding: 5px 20px;
+}
+
+.boutons .btnBlack {
+    background-color: black;
+    color: white;
+    padding: 5px 20px;
+}
+
+.boutons .btnBlack a {
+    text-decoration: none;
+    color: white;
+}

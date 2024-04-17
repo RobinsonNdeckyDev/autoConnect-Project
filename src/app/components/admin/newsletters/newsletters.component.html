@@ -1,0 +1,46 @@
+<div class="newslettersContain py-4 px-4">
+    <h3 class="navTitle"><a href="" routerLink="proprietaires" class="my-3">Newsletters /</a></h3>
+
+    <div class="row .row2 mt-4 shadow">
+        <div class="col-12 ">
+            <h3 class="my-4 text-center titreA">Liste des abonnées à la newsletter</h3>
+            <div class="tableCard p-2 border-0">
+
+                <div class="table-responsive">
+
+                    <div *ngIf="isLoading">
+                        <!-- Attendez que les données soient chargées -->
+                        <p class="fw-lighter fw-bold"> <span class="text-chargement">Chargement en cours...</span></p>
+                    </div>
+
+                    <div *ngIf="!isLoading && newsletters.length === 0">
+                        <p class="fw-lighter px-2"> <span class="text-chargement">Oops!</span> Pas d'abonnés disponibles pour l'instant...</p>
+                    </div>
+
+                    <div class="table-responsive" *ngIf="!isLoading && newsletters.length > 0">
+                        <table class="table mb-3" datatable [dtOptions]="dtOptions" class="table row-border hover w-100"
+                            *ngIf="newsletters.length > 0">
+                            <thead class="">
+                                <tr class="titreTab fw-light text-start">
+                                    <th scope="col">Email</th>
+                                    <th scope="col" class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="fs-6" *ngFor="let news of newsletters">
+                                    <td scope="col"> {{news.email}} </td>
+                                    <td scope="col" class="detailIcon text-center">
+                                        <span class="mx-2"><i class="bi bi-x-square-fill" (click)="subscriberDelete(news.id)"></i></span>
+                                    </td>
+                                </tr>
+                        
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

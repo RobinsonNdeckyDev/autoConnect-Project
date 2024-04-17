@@ -1,0 +1,65 @@
+.imgLogo {
+    width: 100px;
+}
+
+.Navbar {
+    padding: 6px 25px;
+}
+
+.Navbar .navLeft {
+    width: 230px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Navbar .profil {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+}
+
+.Navbar .rightNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* overflow-x: visible; */
+    /* z-index: 1; */
+}
+
+.Navbar .rightNav span {
+    margin-right: 15px;
+    padding: 0;
+}
+
+.rightNav img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 25px;
+}
+
+.rightNav i {
+    color: white;
+}
+
+.Navbar .burger i {
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+.rightNav .dropdown-center button {
+    background-color: white;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .Navbar .navLeft {
+        width: 150px;
+    }
+
+    .rightNav span {
+        display: none;
+    }
+}

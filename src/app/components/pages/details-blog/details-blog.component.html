@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+
+<div class="bannerAccueil mt-5">
+    <!-- <img src="../../../assets/ban2.svg" class="img-fluid" alt=""> -->
+    <div class="containBanner w-50">
+        <h1>Trouvez le bon <br> véhicule pour vous !</h1>
+        <p class="bannerP">Plateforme d'annonces de vente de véhicules 100% fiable</p>
+        <button class="btn mt-3">
+            <a class="text-decoration-none text-light fw-bold" routerLink="/login">Vendez votre véhicule</a>
+        </button>
+    </div>
+</div>
+
+
+<section class="detailBlogs" *ngIf="blogDetails">
+    <h1 class="text-center my-4"> {{blogDetails.titre}} </h1>
+    <div class="trait m-auto"></div>
+
+    <div class="detailContain container my-4">
+
+        <div class="content my-5">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="">
+                        <!-- ctnLeft -->
+                        <img src="{{apiImage}}{{blogDetails.image}}" class="img-fluid w-100 " alt="">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 ctnR">
+                    <div class="">
+                        <p>{{blogDetails.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+<app-footer></app-footer>

@@ -1,0 +1,36 @@
+.bannerCondition{
+    background-image: url(../../../../assets/images/autres/conditions.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding: 22% 0;
+}
+
+.cdt .cdtContainer h2{
+    color: #0F42A8;
+    font-size: 40px;
+}
+
+.cdt .cdtContainer .trait{
+    width: 150px;
+    margin: 0 auto;
+    border: 2px solid #0F42A8;
+}
+
+.cdt .cdtText{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cdt .cdtText .text{
+    text-align: center;
+    font-size: 17px;
+    font-weight: 300;
+}
+
+.cdt .cdtText h4{
+    color: #0F42A8;
+    margin: 15px 0;
+    font-weight: 600;
+}

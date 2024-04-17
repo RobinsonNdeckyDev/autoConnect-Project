@@ -1,0 +1,77 @@
+<div class="sidebar-content">
+    <ul class="sidebarMenu">
+        <li class="" routerLinkActive="activeLink"  (click)="hideSidebar()">
+            <a class="" href="" routerLink="Accueil_Admin"><i class="fa-solid fa-house"></i>Dashboard</a>
+        </li>
+
+        <li class="">
+            <a class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                (click)="toggleCollapse('home')" [attr.aria-expanded]="homeCollapsed ? 'false' : 'true'"
+                [attr.data-bs-target]="'#home-collapse'" aria-controls="home-collapse">
+                <i class="fa-solid fa-user"></i>
+                Utilisateurs 
+                <i class="fa-solid fa-caret-down dropicon"></i>
+            </a>
+            <div class="collapse" id="home-collapse" [ngClass]="{ 'show': !homeCollapsed }">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li>
+                        <a routerLink="utilisateurs/vendeurs" routerLinkActive="selected"  (click)="hideSidebar()">Propriétaires</a>
+                    </li>
+                    <li>
+                        <a routerLink="utilisateurs/acheteurs" routerLinkActive="selected"  (click)="hideSidebar()">Acheteurs</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="">
+            <a class="btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                (click)="toggleCollapse('dashboard')" [attr.aria-expanded]="dashboardCollapsed ? 'false' : 'true'"
+                [attr.data-bs-target]="'#dashboard-collapse'" aria-controls="dashboard-collapse">
+                <i class="fa-solid fa-bullhorn"></i>
+                Annonces
+                <i class="fa-solid fa-caret-down dropicon"></i>
+            </a>
+            <div class="collapse" id="dashboard-collapse" [ngClass]="{ 'show': !dashboardCollapsed }">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li>
+                        <a routerLink="annonces/voitures" routerLinkActive="selected"  (click)="hideSidebar()">Voitures</a>
+                    </li>
+                    <li>
+                        <a routerLink="annonces/motos" routerLinkActive="selected"  (click)="hideSidebar()">Motos</a>
+                    </li>
+                    <li>
+                        <a routerLink="annonces/utilitaires" routerLinkActive="selected"  (click)="hideSidebar()">Utilitaires</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="" routerLinkActive="activeLink"  (click)="hideSidebar()">
+            <a href="" routerLink="categories"><i class="fa-solid fa-layer-group"></i>Catégories</a>
+        </li>
+        <li class="" routerLinkActive="activeLink"  (click)="hideSidebar()">
+            <a href="" routerLink="contacts"><i class="fa-solid fa-address-book"></i>Contacts</a>
+        </li>
+        <li class="" routerLinkActive="activeLink"  (click)="hideSidebar()">
+            <a href="" routerLink="signalements"><i class="fa-solid fa-triangle-exclamation"></i>Signalements</a>
+        </li>
+        <li class="" routerLinkActive="activeLink"  (click)="hideSidebar()">
+            <a href="" routerLink="newsletters"><i class="fa-solid fa-newspaper"></i>Newsletters</a>
+        </li>
+        <li class="" routerLinkActive="activeLink"  (click)="hideSidebar()">
+            <a href="" routerLink="blogs"><i class="fa-solid fa-file-invoice"></i>Blogs</a>
+        </li>
+    </ul>
+    <div class="logoConnect m-auto ">
+        <a href="" routerLink="/admin">
+            <img src="../../../../assets/images/logo2-removebg-preview.png" class="img-fluid w-100 h-100" alt="">
+        </a>
+    </div>
+
+    <div class="disconnect d-flex justify-content-start align-content-center mb-4">
+        <i class="fa-solid fs-4 fa-right-from-bracket "></i>
+        <app-logout-admin class="text-light"></app-logout-admin>
+        <!-- <a href="" routerLink="/admin">Déconnexion</a> -->
+    </div>
+
+</div>

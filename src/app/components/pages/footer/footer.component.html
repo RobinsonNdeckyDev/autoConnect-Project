@@ -1,0 +1,58 @@
+<div class="footer">
+    <div class="row m-0 footerContent">
+        <div class="logo col-12 col-md-4 mb-3">
+            <a href=""><img src="../../../assets/images/logo2-removebg-preview.png" alt="" class="img-fluid"></a>
+        </div>
+        <div class="col-12 fRight col-md-8 px-2 mb-3">
+            <div class="newsletter mb-4 border rounded-2">
+                <form action="" class="d-flex">
+                    <input type="text" class="form-control border-0 rounded-0" name="newsletter" id="newsletter"
+                        placeholder="Votre email pour s'inscrire à la newsletter..." [(ngModel)]="newsletter">
+                    <button class="btn rounded-0  p-2" (click)="subscribeNews()">S'abonner</button>
+                </form>
+            </div>
+            <div class="row footerTitre g-4">
+                <div class="col-12 col-md-4">
+                    <h3>Informations</h3>
+                    <ul>
+                        <li><a routerLink="/contact">Nous contactez</a></li>
+                        <li><a routerLink="/about">A propos</a></li>
+                        <li><a routerLink="/confidentialite">Politique de confidentialité</a></li>
+                        <li><a routerLink="/conditions">Termes et conditions</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-4">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a routerLink="/">Accueil</a></li>
+                        <li><a routerLink="/vehicules">Véhicules</a></li>
+                        <li><a routerLink="/blog">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-4">
+                    <h3>Suivez-nous</h3>
+                    <ul>
+                        <li><a href=""><i class="fa-brands fa-facebook"></i> Facebook</a></li>
+                        <li><a href=""><i class="fa-brands fa-whatsapp"></i> Whatsapp</a></li>
+                        <li><a href=""><i class="fa-brands fa-twitter"></i> Twitter</a></li>
+                        <li><a href=""><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row m-0 coods py-3">
+        <div class="col-12 col-md-4">
+            <p>Adresse: Dakar</p>
+        </div>
+        <div class="col-12 col-md-4">
+            <p>Email: autoconnect@gmail.com</p>
+        </div>
+        <div class="col-12 col-md-4">
+            <p>Tel: 77 777 77 77</p>
+        </div>
+    </div>
+    <div class="copyright py-3">
+        <p>Copyright - Autoconnect @ 2023 - 2024</p>
+    </div>
+</div>

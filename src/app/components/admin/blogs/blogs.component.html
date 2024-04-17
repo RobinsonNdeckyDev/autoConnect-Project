@@ -1,0 +1,181 @@
+<div class="blogsContain mx-4 py-4">
+    <h3 class="mb-4"><a href="" routerLink="/blogs">Blogs /</a></h3>
+
+    <div class="cartesBlogs mt-3 shadow px-4 py-4">
+        <div class="headerBlog">
+            <button class="btnAddBlog btn" data-bs-toggle="modal" data-bs-target="#ajoutBlog">Ajouter un blog</button>
+            <span class="search d-flex justify-content-center align-content-center">
+                <input type="search" class="form-control border-1 rounded-end-0" name="search" 
+                    placeholder="faite une recherche..." [(ngModel)]="searchTerm" (input)="onSearchChange()"
+                >
+                <span class="searchIcon rounded-end-2"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </span>
+        </div>
+
+        <div *ngIf="isLoading">
+            <!-- Attendez que les données soient chargées -->
+            <p class="fw-lighter fw-bold"> <span class="text-chargement">Chargement en cours...</span></p>
+        </div>
+
+        <div *ngIf="!isLoading && filteredBlogs.length === 0">
+            <p class="fw-lighter px-2"> <span class="text-chargement">Oops!</span> Pas de blog publié pour l'instant...</p>
+        </div>
+
+        <div *ngIf="!isLoading && filteredBlogs.length > 0">
+            <div class="row mt-3 g-5 cartBlog">
+                <div class="col-12 col-md-6" *ngFor="let blog of filteredBlogs">
+                    <div class="card px-3 shadow">
+                        <div class="cardImg mt-3">
+                            <img src="{{apiImage}}{{blog.image}}" class="img-fluid shadow rounded-4" alt="">
+                        </div>
+                        <div class="card cardBody  p-3 mx-3">
+                            <div class="cardTitle">
+                                <h4 class="text-center"> {{blog.titre}} </h4>
+                            </div>
+                            <div class="cardDetail ">
+                                <p class="textBlog">
+                                   {{blog.description}}
+                                </p>
+                            </div>
+            
+                            <div class="btnCard">
+                                <button class="btn btn-primary text-light" (click)="openBlogDetailsModal(blog)" data-bs-toggle="modal"
+                                    data-bs-target="#detailBlog">Voir detail</button>
+    
+                                <button type="button" (click)="prepareEdit(blog)" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                    Modifier
+                                </button>
+    
+                                <button class="btn btn-primary" (click)="supprimerBlog(blog.id)">Supprimer</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- *ngFor="let image of blog.images -->
+
+
+
+<!-- Modal ajout blog -->
+<div class="modal fade" id="ajoutBlog" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header shadow">
+                <h1 class="modal-title fs-5" >Ajouter un blog</h1>
+                <span type="button" class="btnCloseModal" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i></span>
+            </div>
+            <div class="modal-body">
+               <form action="" (ngSubmit)="addBlog()">
+                <div class="mb-3">
+                    <label for="titre" class="form-label">Titre du blog</label>
+                    <input type="text" class="form-control" name="titre" id="titre" [(ngModel)]="titre">
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image du blog</label>
+                    <!-- <input type="text" class="form-control" name="image" id="image" [(ngModel)]="image"> -->
+                    <input (change)="onFileAdd($event)" class="form-control" type="file" id="image" name="image" accept="image/*">
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description du blog</label>
+                    <textarea type="text" class="form-control" name="description" id="description" [(ngModel)]="description"></textarea>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btnAddBlog" data-bs-dismiss="modal">Ajouter</button>
+                    <button type="button" class="btn btnFermer" data-bs-dismiss="modal">Fermer</button>
+                </div>
+
+               </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Bootstrap pour afficher les détails du blog -->
+<div class="modal fade" id="detailBlog" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header shadow">
+                <h5 class="modal-title" id="detailBlogLabel">Détails du Blog</h5>
+                <span type="button" class="btnCloseModal" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i></span>
+            </div>
+            <div class="modal-body">
+                <div class="blogContain">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="">
+                                <img src="{{apiImage}}{{selectedBlog?.image}}" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 detailContain">
+                            <div class="">
+                                <h5 class="text-center mb-4">{{ selectedBlog?.titre }}</h5>
+                                <p class="mb-3">{{ selectedBlog?.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer d-flex justify-content-end shadow">
+                <button type="button" class="btn btnFermer" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal modifier un blog -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="blogToEdit">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modification du blog</h1>
+                <span type="button" class="btnCloseModal" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i></span>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="editBlog()">
+                    <div class="mb-3">
+                        <label for="titre" class="form-label">Titre du blog</label>
+                        <input type="text" class="form-control" name="titre" id="titre" [(ngModel)]="blogToEdit.titre">
+                    </div>
+                
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image du blog</label>
+                        <input (change)="onFileChange($event)" class="form-control" type="file" id="image" name="image" 
+                            accept="image/*">
+                    </div>
+                
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description du blog</label>
+                        <textarea type="text" class="form-control" name="description" id="description"
+                            [(ngModel)]="blogToEdit.description"></textarea>
+                    </div>
+                
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btnAddBlog" data-bs-dismiss="modal">Enregistrer</button>
+                        <button type="button" class="btn btnFermer" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- *ngIf="selectedBlog" -->

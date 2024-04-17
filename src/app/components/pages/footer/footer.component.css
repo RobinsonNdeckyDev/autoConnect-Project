@@ -1,0 +1,107 @@
+.footer {
+    margin: 0;
+    background-color: black;
+}
+
+.footerContent {
+    padding: 15px 25px 0 25px;
+}
+
+.fRight {
+    padding-left: 25px !important;
+    padding-top: 20px !important;
+}
+
+.footer .logo {
+    background-color: black;
+    padding: 80px 30px;
+    position: relative;
+    bottom: 35px;
+    border: 1px solid #0F42A8;
+}
+
+.footer .logo img {
+    width: 100%;
+}
+
+.footer .logo:hover {
+    bottom: 0;
+    transition: 2s ease;
+}
+
+.footer .newsletter {
+    border: 1px solid rgb(3, 3, 3);
+    border: 15px;
+    /* background-color: white; */
+}
+
+.footer .newsletter button {
+    color: white;
+    background-color: #0F42A8;
+    border-radius: none;
+    font-weight: 700;
+}
+
+.footerTitre h3 {
+    color: #0F42A8;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.footerTitre ul {
+    padding: 0;
+}
+
+.footerTitre li {
+    list-style: none;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.footerTitre li a:hover {
+    position: relative;
+    left: 20px;
+    color: #0F42A8;
+    transition: 1s ease;
+}
+
+.footerTitre a {
+    text-decoration: none;
+    color: white;
+}
+
+.footerTitre a i {
+    margin-right: 5px;
+}
+
+.coods {
+    background-color: #0F42A8;
+    padding: 0;
+}
+
+.coods p {
+    color: white;
+    text-align: center;
+    margin-bottom: 0;
+    font-weight: thin;
+    font-size: 18px;
+}
+
+.copyright {
+    background-color: black;
+}
+
+.copyright p {
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    font-weight: thin;
+    margin: 0;
+}
+
+@media only screen and (min-width: 168px) and (max-width: 767px) {
+    .fRight .newsletter{
+        border: 1px solid red;
+    }
+}

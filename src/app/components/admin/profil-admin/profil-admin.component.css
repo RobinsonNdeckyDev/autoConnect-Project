@@ -1,0 +1,79 @@
+.profilContain h3 a {
+    text-decoration: none;
+    color: #0F42A8;
+}
+
+.profilhead h3 {
+    color: #0F42A8;
+}
+
+hr {
+    background-color: #0F42A8;
+    border: 0;
+    height: 2px;
+}
+
+.updateBtn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.updateBtn button {
+    background-color: #0F42A8;
+    color: white;
+    font-weight: bold;
+    padding: 5px 30px;
+}
+
+.profilBody .profilInfos img {
+    border-radius: 25px;
+    margin-top: 15px;
+}
+
+.profilBody h3 {
+    color: #0F42A8;
+}
+
+.navProfil {
+    border-bottom: 2px solid #0F42A8;
+    margin-bottom: 10px;
+}
+
+.navProfil a {
+    font-size: 18px;
+    font-weight: 600;
+    color: black;
+}
+
+.activeLink {
+    color: #0F42A8 !important;
+    font-weight: bold;
+    position: relative;
+    bottom: 5px;
+}
+
+.pfInfos {
+    margin-top: 15%;
+}
+
+.pfInfos .logo {
+    background-color: black;
+    border-radius: 20px;
+    padding: 4%;
+}
+
+.btnUpdate {
+    background-color: #0F42A8;
+    color: white;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .profilContain{
+        margin: 3% 0 !important;
+    }
+
+    .containAdmin{
+        margin-top: 3% !important;
+    }
+}

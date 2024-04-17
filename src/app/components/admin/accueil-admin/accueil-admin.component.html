@@ -1,0 +1,108 @@
+<div class="row row1 mt-4 g-4">
+    <div class="col-12 col-md-4" [attr.data-aos]="'fade-in'" [attr.data-aos-duration]="800" [attr.data-aos-delay]="1000" >
+        <div class="card border-0 shadow">
+            <div class="cardImg">
+                <img src="../../../../assets/images/imgCard.png" class="img-fluid" alt="">
+            </div>
+            <div class="cardLogo s">
+                <span class="text-light">
+                    <img src="../../../../assets/images/iconMoto.png" alt="">
+                </span>
+            </div>
+            <div class="cardBody d-flex justify-content-between">
+                <span>
+                    Motos
+                </span>
+                <span>
+                    {{nbreMotos}}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+        <div class="card border-0 shadow">
+            <div class="cardImg">
+                <img src="../../../../assets/images/imgCard.png" class="img-fluid" alt="">
+            </div>
+            <div class="cardLogo shadow">
+                <span class="text-light">
+                    <img src="../../../../assets/images/iconVoiture.png" alt="">
+                </span>
+            </div>
+            <div class="cardBody d-flex justify-content-between">
+                <span>
+                    Voitures
+                </span>
+                <span>
+                    {{nbreVoitures}}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 border-0 col-md-4">
+        <div class="card shadow">
+            <div class="cardImg">
+                <img src="../../../../assets/images/imgCard.png" class="img-fluid" alt="">
+            </div>
+            <div class="cardLogo shadow">
+                <span class="text-light">
+                    <img src="../../../../assets/images/iconUtilitaire.png" alt="">
+                </span>
+            </div>
+            <div class="cardBody d-flex justify-content-between">
+                <span>
+                    Utilitaires
+                </span>
+                <span>
+                    {{nbreUtilitaires}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row row2 mt-2 g-4">
+    <div class="col-12 col-md-8">
+        <div class="card tableCard py-4 shadow border-0 px-4 table-responsive">
+            <p class="mb-2 px-2 mt-1 fs-4 text fw-bold">Liste des propriétaires</p>
+
+            <table datatable [dtOptions]="dtOptions" class="table row-border hover w-100" *ngIf="proprietaires">
+                <thead>
+                    <tr class="titleHead">
+                        <th scope="col">Image</th>
+                        <th scope="col">Nom complet</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Téléphone</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <div *ngIf="proprietaires.length === 0">
+                        <p class="fw-lighter px-2"> <span class="text-danger">Oops!</span> Pas de propriétaires disponibles pour
+                            l'instant...</p>
+                    </div>
+                    
+                    <tr class="text-center" *ngFor="let proprietaire of proprietaires">
+                        <td><img src="{{apiImage}}{{ proprietaire.image }}" class="shadow imgProp" alt=""></td>
+                        <td>{{ proprietaire.prenom }} {{ proprietaire.nom }}</td>
+                        <td>{{ proprietaire.email }}</td>
+                        <td>{{ proprietaire.telephone }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="card cardStatistique shadow">
+            <div class="cardImgStat">
+                <img src="../../../../assets/images/imgCard.png" class="img-fluid" alt="">
+            </div>
+            <div class="cardBodyStaT py-3">
+                <h2 class="text-center mb-3">Statistique</h2>
+                <canvas id="MonChart">{{ chart }}</canvas>
+            </div>
+        </div>
+    </div>
+</div>

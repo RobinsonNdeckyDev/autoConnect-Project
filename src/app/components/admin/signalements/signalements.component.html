@@ -1,0 +1,106 @@
+<div class="signalementContain mx-4 py-4">
+    <h3 class="alertTitle mb-3"><a href="" routerLink="/signalements">Signalements /</a></h3>
+
+    <div class="cars shadow py-3 px-4 rounded-4">
+
+        <div class="search my-3 d-flex justify-content-end align-content-center">
+            <div class="searchCont">
+                <input type="text" class="form-control border-1 rounded-end-0" name="search" 
+                    placeholder="faite une recherche..." [(ngModel)]="searchTerm" (input)="onSearchChange()"
+                >
+                <span class="searchIcon rounded-end-2 px-3 py-2"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
+        </div>
+    
+        <div class=" mb-3 mt-4">
+
+            <div *ngIf="isLoading">
+                <!-- Attendez que les données soient chargées -->
+                <p class="fw-lighter fw-bold"> <span class="text-chargement">Chargement en cours...</span></p>
+            </div>
+
+            <div *ngIf="!isLoading && filteredSignalements.length === 0">
+                <p class="fw-lighter px-2"> <span class="text-chargement">Oops!</span> Pas d'annonces signalées pour l'instant...</p>
+            </div>
+
+            <div class="row" *ngIf="!isLoading && filteredSignalements.length > 0">
+                <div class="col-12 col-md-3 g-3" *ngFor="let signal of filteredSignalements">
+                    <div class="card rounded-3">
+                        <div class="card-head mx-3 mt-3">
+                            <p class="nomCar fw-bold"> {{signal.infoAnnonceSignal?.nom}} </p>
+                            <p class="fw-lighter"> {{signal.infoAnnonceSignal?.prix}} Fcfa </p>
+                            <!-- <img src="http://127.0.0.1:8000/images/{{signal.infoUserSignal?.image}}" class="img-fluid" alt=""> -->
+                        </div>
+                
+                        <div class="card-body">
+                            <img src="http://127.0.0.1:8000/images/{{signal.infoAnnonceSignal?.image1}}" alt=""
+                                class="img-fluid imgAnnonce rounded-4 shadow">
+                            <button class="btn" data-bs-toggle="modal" data-bs-target="#detailSignalement"
+                                (click)="afficherDetailAnnonce(signal)">
+                                Voir détail
+                            </button>
+                
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    
+    </div>
+
+</div>
+
+
+<!-- Modal detail Signalement -->
+
+<!-- Modal -->
+<div class="modal fade" id="detailSignalement" tabindex="-1" aria-labelledby="detailSignalementLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header shadow">
+                <h1 class="modal-title fs-5" id="detailSignalementLabel">Informations du signalement</h1>
+                <span data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i></span>
+            </div>
+            <div class="modal-body">
+                <!-- <p> {{annonceSelected?.description}} </p> -->
+                <div class="userContain">
+                
+                    <div class="imgUser d-flex justify-content-center my-1">
+                        <img src="http://127.0.0.1:8000/images/{{ annonceSelected?.infoUserSignal.image }}" alt="photo" class="img-fluid">
+                    </div>
+                
+                    <div class="infoDetails">
+                        <h4 class="text-center mb-3">{{ annonceSelected?.infoUserSignal.prenom }} {{annonceSelected?.infoUserSignal.nom}} </h4>
+                
+                        <hr class="my-2">
+                        <h6>Infos</h6>
+                        <hr class="my-2">
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <p class="">Email: <br> {{ annonceSelected?.infoUserSignal.email }}</p>
+                                <p class="">Téléphone: <br> {{ annonceSelected?.infoUserSignal.telephone }}</p>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <p class="">Adresse: <br> {{ annonceSelected?.infoUserSignal.adresse }}</p>
+                                <p class="">Date: <br> {{ annonceSelected?.updated_at | date: 'dd/MM/yyyy HH:mm:ss' }}</p>
+                            </div>
+                        </div>
+
+                        <hr class="my-2">
+                        <h6>Motif du signalement</h6>
+                        <hr class="my-2">
+                        <p class="mb-4 fw-lighter">{{ annonceSelected?.description }}</p>
+                    </div>
+                
+                </div>
+            </div>
+            <div class="modal-footer shadow">
+                <div class="btnsFooter w-100">
+                    <button type="button" class="btn btnDelete" data-bs-dismiss="modal" (click)="deleteSignalement(annonceSelected?.id)">Supprimer</button>
+                    <button type="button" class="btn btnClose" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

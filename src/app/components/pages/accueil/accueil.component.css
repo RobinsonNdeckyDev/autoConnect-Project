@@ -1,0 +1,424 @@
+.imgPrinc {
+    height: 180px;
+}
+
+
+.bannerAccueil {
+    padding: 0;
+    position: relative;
+    background-image: url(/assets/banrect1.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding: 14% 0;
+    border: 1px;
+}
+
+.containBanner {
+    padding-left: 60px;
+}
+
+.containBanner h1,
+.bannerP {
+    color: white;
+}
+
+.containBanner button {
+    background-color: #0F42A8;
+}
+
+
+/* Section annonces */
+.annonces h1 {
+    color: #0F42A8;
+}
+
+.annonces .trait {
+    border: 2px solid #0F42A8;
+    width: 150px;
+}
+
+.annonces .carteAnnonces .card {
+    border: none;
+    border-radius: 20px;
+}
+
+.annonces .cardImg {
+    margin-top: 15px;
+}
+
+.annonces .carteAnnonces .card:hover {
+    position: relative;
+    bottom: 20px;
+    border-bottom: 2px solid black;
+    transition: 4s ease;
+}
+
+.annonces .cardImg {
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.annonces .cardImg img {
+    border-radius: 15px;
+}
+
+.annonces .cardTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.annonces .cardTitle .nom {
+    color: #0F42A8;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.annonces .cardTitle .profil {
+    border-radius: 50%;
+    padding: 1%;
+    background-color: #0F42A8;
+}
+
+.annonces .cardTitle .profil img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.annonces .cardTrait {
+    border: 2px solid black;
+}
+
+.annonces .cardDetails {
+    display: flex;
+    justify-content: space-between;
+}
+
+.annonces .cardDetails img {
+    margin-right: 20px;
+    width: 30px;
+
+}
+
+.annonces .cardButton button {
+    background-color: #0F42A8;
+    padding: 1%;
+    width: 100%;
+    border-radius: 18px 0;
+}
+
+.annonces .cardButton button:hover {
+    background-color: black;
+    transition: 1s ease;
+}
+
+.annonces .cardButton button a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* A propos de nous */
+.a_propos h1 {
+    color: #0F42A8;
+}
+
+.a_propos .trait {
+    border: 2px solid #0F42A8;
+    width: 150px;
+}
+
+.a_propos .right {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.a_propos .right p {
+    text-align: justify;
+    font-weight: lighter;
+    font-size: 16px;
+}
+
+.a_propos .right button {
+    background-color: black;
+    border-radius: 10px;
+}
+
+.a_propos .right button a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 600px;
+}
+
+
+/* Blogs */
+.blogs h1 {
+    color: #0F42A8;
+}
+
+.blogs .trait {
+    border: 2px solid #0F42A8;
+    width: 150px;
+}
+
+.contBody {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blogs .cardBlogs .card {
+    border: none;
+    border-radius: 20px;
+    border-bottom: 8px solid #0F42A8;
+}
+
+.blogs .cardBody {
+    position: relative;
+    /* bottom: 25px; */
+    background-color: #0F42A8;
+    border-radius: 15px;
+}
+
+.blogs .cardBody:hover {
+    bottom: 5px;
+    transition: 2s ease;
+}
+
+.blogs .cardBody:hover button {
+    background-color: black;
+    color: white;
+}
+
+.blogs .cardBody:hover button a {
+    color: white;
+}
+
+.blogs .card:hover {
+    border-top: 5px solid #0F42A8;
+    transition: 2s ease;
+}
+
+.blogs .cardBody h4{
+    color: white;
+}
+
+.blogs .cardBody 
+.textBlog {
+    height: 20vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: white;
+}
+
+.blogs .cardBody .textBlog {
+    text-align: justify;
+    margin-top: 5px;
+    font-weight: lighter;
+}
+
+.blogs .cardBody button {
+    background-color: white;
+    border-radius: 15px 0;
+}
+
+.blogs .cardBody button a {
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+}
+
+.temoignages {
+    background-image: url(/assets/images/BannerSVG/bgTemoignages.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.temoignages h1 {
+    color: white;
+    margin-bottom: 5% !important;
+    margin-top: 2% !important;
+}
+
+.temoignages .carousel-indicators {
+    position: relative;
+    margin-top: 8%;
+    bottom: 0;
+    margin-bottom: 1%;
+}
+
+.temoignages .carousel-inner {
+    padding: 2%;
+}
+
+.temoignages .carousel-inner .carte {
+    position: relative;
+    background-color: white;
+    z-index: 1;
+}
+
+.temoignages .teamProf {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.temoignages .teamProf img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.temoignages .teamProf span {
+    color: #0F42A8;
+    font-weight: 700;
+}
+
+.temoignages .teams {
+    padding: 2%;
+}
+
+.temoignages .teams p {
+    text-align: justify;
+    font-weight: 400;
+}
+
+/* .temoignages .carousel-inner .carte .leftA{
+    position: absolute;
+    display: block;
+    width: 60px;
+    height: 60px;
+    background-color: #0F42A8;
+    bottom: -20%;
+    left: -20px;
+    z-index: -2;
+}
+
+.temoignages .carousel-inner .carte .rightB{
+    position: absolute;
+    display: block;
+    width: 60px;
+    height: 60px;
+    background-color: black;
+    top: -20px;
+    right: -20px;
+    z-index: -1;
+} */
+
+
+/* banner annonce */
+.bannerAnnonce p {
+    color: #0F42A8;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.bannerAnnonce .btnAnnonce {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.bannerAnnonce button {
+    background-color: black;
+}
+
+.bannerAnnonce button a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Contact section */
+
+.contact {
+    background-image: url(/assets/images/BannerSVG/bgContact.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.contact .containContact {
+    background-color: rgba(255, 255, 255, 0.105);
+}
+
+.contact .containContact .formContent h4 {
+    color: white;
+    font-weight: bold;
+}
+
+.contact .containContact .formContent label {
+    color: white;
+    margin-bottom: 8px;
+}
+
+.contact .containContact .formContent button {
+    background-color: black;
+    color: white;
+    font-weight: 700;
+}
+
+/* and (min-width: 168px) */
+
+
+@media only screen and (max-width: 767px) {
+    .containBanner {
+        display: block;
+        padding-left: 25px;
+    }
+
+    .containBanner button,
+    .bannerP {
+        display: none;
+    }
+
+    .containBanner h1 {
+        font-size: 16px;
+    }
+
+    .annonces h1 {
+        font-size: 18px;
+    }
+
+    .containContact .formContent button {
+        width: 40%;
+    }
+
+    .temoignages .content h1 {
+        font-size: 16px;
+    }
+
+    .bannerAnnonce .pBanner {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .bannerAnnonce .btnAnnonce {
+        display: flex;
+        justify-content: center;
+    }
+
+    .blogs .cardBlogs{
+        margin: 0;
+        padding: 0;
+    }
+
+    .cardBlogs .contBody{
+        padding: 0;
+    }
+
+    .cardBlogs .cardBody{
+        margin-top: 15px;
+    }
+
+    .a_propos .right .contentPropos button{
+        width: 100% !important;
+    }
+
+    .carousel{
+        display: none;
+    }
+}

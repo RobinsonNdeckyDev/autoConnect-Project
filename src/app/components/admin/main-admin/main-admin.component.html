@@ -1,0 +1,18 @@
+<div class="main-content">
+    
+    <div class="navbar">
+        <app-navbar class="w-100" (toggleSidebarEvent)="toggleSidebar()"></app-navbar>
+    </div>
+    
+    <div class="row m-0 p-0">
+        <div class="sidebar d-md-block col-md-2 m-0 p-0" *ngIf="isSidebarVisible">
+            <app-sidebar></app-sidebar>
+        </div>
+    
+        <div class=" m-0 contenu border" [ngClass]="{'col-md-10': isSidebarVisible, 'col-md-12': !isSidebarVisible}">
+            <router-outlet></router-outlet>
+        </div>
+    
+    </div>
+
+</div>

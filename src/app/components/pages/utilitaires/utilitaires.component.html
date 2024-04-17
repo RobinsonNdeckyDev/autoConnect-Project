@@ -1,0 +1,110 @@
+<app-navbar></app-navbar>
+
+<section class="bannerUtilitaires mt-0"></section>
+
+<section class="utilitaires py-3">
+    <div class="utilitairesContainer container">
+        <h2 class="text-center my-4">Trouvez-vous un utilitaire</h2>
+        <div class="trait mb-4"></div>
+
+
+        <div class="carteAnnonces mb-5 container mt-3">
+
+            <div class="headAnnonces">
+                <button class="btn shadow"><a href="" routerLink="/login">Vendre mon véhicule</a></button>
+                <div class="search shadow">
+                    <input type="text" name="textSearch" class="border-0" id="textSearch"
+                        placeholder="Faite une recherche..." [(ngModel)]="searchTerm" (input)="onSearchChange()"
+                    >
+                    <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+            </div>
+
+            <div>
+                <div *ngIf="isLoading">
+                    <!-- Attendez que les données soient chargées -->
+                    <p class="fw-lighter fw-bold"> <span class="text-chargement">Chargement en cours...</span></p>
+                </div>
+
+                <div *ngIf="!isLoading && (!fiteredUtilitaires || fiteredUtilitaires.length === 0)">
+                    <p class="fw-lighter fw-bold"> <span class="text-chargement">Oops!</span> Pas de vehicule utilitaire
+                        disponible pour l'instant
+                    </p>
+                </div>
+
+                <div *ngIf="!isLoading && fiteredUtilitaires && fiteredUtilitaires.length > 0">
+                    <div class="row cartes m-0 g-4" [attr.data-aos]="'fade-up'" [attr.data-aos-duration]="800" [attr.data-aos-delay]="500">
+                        <div class="col-12 col-md-4" *ngFor="let utilitaire of fiteredUtilitaires">
+                            <div class="card shadow">
+                                <div class="cardImg mx-3">
+                                    <div id="carouselExampleInterval" class="carousel slide rounded-3 shadow" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active" data-bs-interval="10000">
+                                                <img src="{{apiImage}}{{utilitaire?.image1}}"
+                                                    class="d-block w-100 imgPrinc rounded-3" alt="...">
+                                            </div>
+                                            <div class="carousel-item" data-bs-interval="2000">
+                                                <img src="{{apiImage}}{{utilitaire?.image2}}"
+                                                    class="d-block w-100 imgPrinc rounded-3" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="{{apiImage}}{{utilitaire?.image3}}"
+                                                    class="d-block w-100 imgPrinc rounded-3" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="{{apiImage}}{{utilitaire?.image4}}"
+                                                    class="d-block w-100 imgPrinc rounded-3" alt="...">
+                                            </div>
+                                        </div>
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+                                            data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                                            data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="cardTitle mx-3">
+                                    <span class="nom"> {{utilitaire.nom}} </span>
+                                    <span class="profil"><img src="{{apiImage}}{{utilitaire.infosProprietaire?.image}}"
+                                            class="img-fluid" alt=""></span>
+                                </div>
+                                <div class="cardTrait mb-3 mt-2"></div>
+                                <div class="cardDetails mx-3">
+                                    <div class="left">
+                                        <p><img src="/assets/images/iconSvg/moteur.png" class="" alt=""> {{utilitaire.moteur}} </p>
+                                        <p><img src="/assets/images/iconSvg/calendar.png" alt="">{{utilitaire.annee}}</p>
+                                        <!-- <p><img src="/assets/images/iconSvg/Transmission.png" alt="">Transmission</p> -->
+                                    </div>
+                                    <div class="Right">
+                                        <p><img src="/assets/images/iconSvg/dashboard.png" alt="">{{utilitaire.kilometrage}} KM</p>
+                                        <p><img src="/assets/images/iconSvg/fuel.png" alt="">{{utilitaire?.carburant}}</p>
+                                    </div>
+                                </div>
+                                <p class="text-center"><img src="/assets/images/iconSvg/money.png" alt=""> {{utilitaire.prix}} Fcfa</p>
+                    
+                                <div class="cardTrait"></div>
+                                <div class="cardButton mx-3 my-3">
+                                    <button class="btn fw-bold text-light" (click)="redirectToDetails(utilitaire.id)">Consulter
+                                        l'annonce</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="bannerEnd"></section>
+
+<app-scroll-button></app-scroll-button>
+
+<app-footer></app-footer>

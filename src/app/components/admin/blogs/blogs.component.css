@@ -1,0 +1,196 @@
+.blogsContain h3 a{
+    text-decoration: none;
+    color: #0F42A8;
+}
+
+.btnCloseModal i{
+    font-size: 25px;
+    color: #0F42A8;
+}
+
+.text-chargement {
+    color: #0F42A8;
+    margin-top: 20px;
+    margin-left: 25px;
+}
+
+.cartBlog .cardBody{
+    background-color: #0F42A8;
+    position: relative;
+    bottom: 20px;
+}
+
+.cartBlog .cardBody:hover{
+    bottom: 8px;
+    transition: 2s ease;
+}
+
+.cartBlog .cardBody h4{
+    color: white;
+}
+
+.cartBlog .cardBody .cardDetail .textBlog{
+    height: 15vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: justify;
+    margin-top: 5px;
+    font-weight: lighter;
+    color: white;
+}
+
+/* .bodyBlog{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.headerBlog{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerBlog button{
+    background-color: #0F42A8;
+    color: white;
+}
+
+/* .search {
+    border: 1px solid red;
+    width: 25%;
+    position: relative;
+    right: 0 !important;
+    left: 75%;
+} */
+
+.search .searchIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0F42A8;
+    padding: 0 15px;
+}
+
+.modal-header{
+    border-bottom: 2px solid #0F42A8;
+}
+
+.modal-footer{
+    border-top: 2px solid #0F42A8;
+}
+
+.modal-body label{
+    color: #0F42A8;
+}
+
+.btnAddBlog{
+    background-color: #0F42A8;
+    color: white;
+}
+
+.btnFermer{
+    background-color: black;
+    color: white;
+}
+
+.search .searchIcon i {
+    color: white;
+    font-size: 18px;
+}
+
+.modal-header h1,h5{
+    color: #0F42A8;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.card{
+    border-bottom: 8px solid #0F42A8;
+}
+
+.cardImg img{
+    border-radius: 20px !important;
+    /* border: 1px solid red; */
+}
+
+.cardbody{
+    background-color: #0F42A8;
+    color: white;
+    padding: 8px 15px;
+    position: relative;
+    /* bottom: 0px; */
+}
+
+.cartesBlogs .cardImg img{
+    height: 40vh;
+    width: 100%;
+}
+
+.cardbody .cardtexte{
+    text-align: justify;
+    font-weight: lighter;
+}
+
+.cardbody .btnCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardbody .btnCard button{
+    background-color: black;
+    padding: 8px 20px;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.pagine ul {
+    border: none !important;
+}
+
+.pagine ul li {
+    border: none !important;
+}
+
+#detailBlog .detailContain{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+
+@media only screen and (max-width: 768px) {
+
+    .blogsContain{
+        margin: 3% 0 !important;
+        padding: 0 !important;
+    }
+
+    .cartesBlogs{
+        padding: 2% !important;
+    }
+
+    .headerBlog {
+        display: block;
+        padding: 0;
+    }
+
+    .headerBlog button{
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .cartesBlogs .cardImg img{
+        height: 25vh;
+    }
+
+    .cartBlog .btnCard{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cartBlog .btnCard button{
+        width: 100%;
+    }
+}

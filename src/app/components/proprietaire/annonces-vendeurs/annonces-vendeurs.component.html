@@ -1,0 +1,1252 @@
+<div class="annoncesContain mx-3 my-3">
+    <h3 class="navTitle mb-3"><a href="" routerLink="motos">Mes nnonces /</a></h3>
+
+    <div class="cars shadow py-3 px-4 rounded-4" *ngIf="annonces">
+        <p class="text-dark"><i class="fa-regular fa-hand-point-right iconhand"></i>Liste annonces Inactives</p>
+        <div class="d-flex annoncesHead">
+            <div class="btnActive">
+                <button class="btn btn-active" (click)="afficherAnnonces()">Voir liste des annonces Actives</button>
+            </div>
+            <div class="search my-3 d-flex justify-content-end align-content-center">
+                <input type="search" class="form-control border-1 rounded-end-0" name="search"
+                    placeholder="faite une recherche..." [(ngModel)]="searchTermInvalide" (input)="onSearchChangeInvalide()">
+                <span class="searchIcon rounded-end-2"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
+        </div>
+
+        <div class="row mb-2 mt-4">
+            <div *ngIf="isLoading">
+                <!-- Attendez que les données soient chargées -->
+                <p class="fw-lighter fw-bold"> <span class="text-chargement">Chargement en cours...</span></p>
+            </div>
+
+            <div *ngIf="!isLoading && filteredAnnoncesInvalides.length === 0">
+                <p class="fw-lighter px-2"> <span class="text-chargement">Oops!</span> Pas d'annonces inactives pour l'instant...</p>
+            </div>
+
+            <div class="row" *ngIf="!isLoading && filteredAnnoncesInvalides.length > 0">
+                <div class="col-12 col-md-3" *ngFor="let annonce of filteredAnnoncesInvalides">
+                    <div class="card rounded-3 shadow">
+                        <div class="card-head mx-3 mt-3">
+                            <span class="nomCar fw-bold">{{annonce?.nom}}</span>
+                            <img src="{{apiImage}}{{currentUser?.image}}" class="img-fluid imgProfil shadow" alt="">
+                        </div>
+                
+                        <div class="card-body">
+                            <img src="{{apiImage}}{{annonce?.image1}}" alt=""
+                                class="img-fluid rounded-4 imgAnnonce shadow">
+                            <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalInvalide"
+                                (click)="afficherDetailAnnonceInvalide(annonce.id)" (click)="getCommentOfAnnonce(annonce.id)">Voir
+                                détail</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="cars shadow py-3 px-4 rounded-4" *ngIf="!annonces">
+        <p class="text-dark"><i class="fa-regular fa-hand-point-right iconhand"></i>Liste annonces actives</p>
+        <div class="d-flex annoncesHead">
+            <div>
+                <button class="btn btn-active" (click)="afficherAnnonces()">Voir liste des annonces inactives</button>
+            </div>
+            <div class="search my-3 d-flex justify-content-end align-content-center">
+                <input type="search" class="form-control border-1 rounded-end-0" name="search"
+                    placeholder="faite une recherche..." [(ngModel)]="searchTermValide" (input)="onSearchChangeValide()">
+                <span class="searchIcon rounded-end-2"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
+        </div>
+
+        <div *ngIf="isLoading">
+            <!-- Attendez que les données soient chargées -->
+            <p class="fw-lighter fw-bold"> <span class="text-chargement">Chargement en cours...</span></p>
+        </div>
+
+        <div *ngIf="!isLoading && filteredAnnoncesValides.length === 0">
+            <p class="fw-lighter px-2"> <span class="text-chargement">Oops!</span> Pas d'annonces valides pour l'instant...</p>
+        </div>
+            
+        <div *ngIf="!isLoading && filteredAnnoncesValides.length > 0">
+            <div class="row mb-3 mt-4 g-3">
+            
+                <div class="col-12 col-md-3" *ngFor="let annonce of filteredAnnoncesValides">
+                    <div class="card rounded-3">
+                        <div class="card-head mx-3 mt-3">
+                            <p class="nomCar fw-bold"> {{annonce?.nom}} </p>
+                            <img src="{{apiImage}}{{currentUser?.image}}" class="img-fluid imgProfil shadow"
+                                alt="">
+                        </div>
+            
+                        <div class="card-body">
+                            <img src="{{apiImage}}{{annonce?.image1}}" alt=""
+                                class="img-fluid imgAnnonce rounded-4 shadow">
+                            <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalValide"
+                                (click)="afficherDetailAnnonceValide(annonce.id)" (click)="getCommentOfAnnonce(annonce.id)">
+                                Voir détail
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!--Modal detail annonce valide -->
+
+<div class="modal fade" id="exampleModalValide" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <!-- Modal header -->
+            <div class="modal-header shadow">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Informations sur l'annonce</h1>
+                <span type="button" class="btnCloseModal" data-bs-dismiss="modal"><i
+                        class="fa-solid fa-circle-xmark"></i></span>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="profilBody">
+                    <ul class="nav navProfil mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active fw-bold" routerLinkActive="activeLink" id="pills-home-tab"
+                                data-bs-toggle="pill" data-bs-target="#dtProfil" type="button" role="tab"
+                                aria-controls="dtProfil" aria-selected="false">
+                                Détails de l'annonce</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link fw-bold" routerLinkActive="activeLink" id="pills-profile-tab"
+                                data-bs-toggle="pill" data-bs-target="#mdfProfil" type="button" role="tab"
+                                aria-controls="mdfProfil" aria-selected="true">Modifier l'annonce</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="dtProfil" role="tabpanel"
+                            aria-labelledby="dtProfil-tab" tabindex="0">
+                            <!-- <h3 class="mb-3">Détails</h3> -->
+                            <hr>
+                            <div class="">
+                                <div class="profil mt-4 rounded-4 py-3 px-4">
+                                    <div class="row mt-3 border shadow py-3 rounded-2">
+                                        <div class="col-12 col-md-7">
+                                            <div id="carouselExampleInterval"
+                                                class="carousel slide rounded-3 p-4 shadow" data-bs-ride="carousel">
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item active" data-bs-interval="10000">
+                                                        <img src="{{apiImage}}{{infoAnnonceSelected?.image1}}"
+                                                            class="d-block w-100 imgSlide rounded-3" alt="...">
+                                                    </div>
+                                                    <div class="carousel-item" data-bs-interval="2000">
+                                                        <img src="{{apiImage}}{{infoAnnonceSelected?.image2}}"
+                                                            class="d-block w-100 imgSlide rounded-3" alt="...">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img src="{{apiImage}}{{infoAnnonceSelected?.image3}}"
+                                                            class="d-block w-100 imgSlide rounded-3" alt="...">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img src="{{apiImage}}{{infoAnnonceSelected?.image4}}"
+                                                            class="d-block w-100 imgSlide rounded-3" alt="...">
+                                                    </div>
+                                                </div>
+                                                <button class="carousel-control-prev" type="button"
+                                                    data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Previous</span>
+                                                </button>
+                                                <button class="carousel-control-next" type="button"
+                                                    data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Next</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-5 infosP" *ngIf="infoProprietaire">
+                                            <div class="contentR">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <img src="{{apiImage}}{{infoProprietaire.image}}"
+                                                            class="img-fluid rounded-4" alt="">
+                                                    </div>
+                                                    <div class="col-12 col-md-6 contRDetail">
+                                                        <p class="infos"> {{infoProprietaire.prenom}} </p>
+                                                        <p class="infos"> {{infoProprietaire.nom}} </p>
+                                                        <p class="infos"> {{infoProprietaire.role}} </p>
+                                                        <p class="infos"> {{infoProprietaire.adresse}} </p>
+                                                        <!-- <p class="infos"> {{infoProprietaire.email}} </p> -->
+                                                    </div>
+                                                </div>
+                                                <div class="iconsprop mt-3">
+                                                    <span><a href="https://wa.me/{{infoProprietaire.telephone}}"><i
+                                                                class="fa-brands fa-whatsapp"></i></a></span>
+                                                    <!-- (click)="getWhatsapp()" -->
+                                                    <span><i class="fa-brands fa-facebook-f"></i></span>
+                                                    <span><a href="mailto:{{infoProprietaire.email}}"><i
+                                                                class="fa-solid fa-envelope"></i></a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="mt-4">
+                                    <div class="imagesSecondaires">
+                                        <img src="{{apiImage}}{{infoAnnonceSelected?.image1}}"
+                                            class="shadow" alt="">
+                                        <img src="{{apiImage}}{{infoAnnonceSelected?.image2}}"
+                                            class="shadow" alt="">
+                                        <img src="{{apiImage}}{{infoAnnonceSelected?.image3}}"
+                                            class="shadow" alt="">
+                                        <img src="{{apiImage}}{{infoAnnonceSelected?.image4}}"
+                                            class="shadow" alt="">
+                                    </div>
+
+                                    <hr>
+                                    <div class="middleDetail mb-3">
+                                        <span>Caractéristique du véhicule</span>
+                                    </div>
+                                    <hr>
+
+                                    <div class="contentDetail">
+                                        <div class="caracteristiques">
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Nom:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.nom}} </p>
+                                            </div>
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Moteur:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.moteur}} </p>
+                                            </div>
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Kilométrage:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.kilometrage}}</p>
+                                            </div>
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Année:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.annee}} </p>
+                                            </div>
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Carburant:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.carburant}} </p>
+                                            </div>
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Prix:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.prix}} Fcfa</p>
+                                            </div>
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Carosserie:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.carosserie}}</p>
+                                            </div>
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Couleur:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.couleur}}</p>
+                                            </div>
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Marque:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.marque}}</p>
+                                            </div>
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Adresse:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.localisation}}</p>
+                                            </div>
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Places:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.nbrePlace}}</p>
+                                            </div>
+
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Descriptiion:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.description}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+                                    <div class="middleDetail mb-3">
+                                        <span>Liste des commentaires</span>
+                                    </div>
+                                    <hr>
+
+                                    <div *ngIf="tabCommentofAnnonce.length === 0">
+                                        <p class="fw-lighter px-2"> <span class="text-danger">Oops!</span> Pas de commentaires disponibles pour
+                                            cette annonce...</p>
+                                    </div>
+                                    
+                                    <div class="avis">
+                                        <div class="contentLeft w-50 mb-2" *ngFor="let comment of tabCommentofAnnonce">
+                                            <div class="headC d-flex">
+                                                <div class="headL">
+                                                    <img src="{{apiImage}}{{comment.infosProprietaire?.image}}" alt=""
+                                                        class="img-fluid shadow">
+                                                </div>
+                                                <div class="bodyC mx-3">
+                                                    <span class="nomC fw-medium"> {{comment.infosProprietaire?.prenom}} </span>
+                                                    <p class="textC m-0 fw-lighter">
+                                                        {{comment.commentaire}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                        <!-- <div class="contentRight w-50">
+                                            <span class=""><i class="fa-solid fa-square-xmark" (click)="detetedCommentaire(comment.id)"></i></span>
+                                        </div> -->
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="mdfProfil" role="tabpanel" aria-labelledby="mdfProfil-tab"
+                            tabindex="0">
+                            <!-- <h3 class="mb-3">Modification</h3> -->
+                            <hr>
+                            <div class="">
+                                <div class="publishAnnonce my-4">
+
+                                    <div class="bannerPublish">
+                                    </div>
+                                    <div class="publishAnnonceContain">
+                                        <h2 class="text-center mt-5 mb-3">Modification de l'annonce</h2>
+                                        <p class="mt-3 mb-3 text-center">Renseigner le formulaire ci-dessous</p>
+                                        <div class="trait mb-4"></div>
+
+                                        <div class="formPublish mx-2 shadow p-4 mb-3 rounded-4">
+                                            <form action="" (ngSubmit)="annonceUpdateOnly(infoAnnonceSelected.id)"
+                                                *ngIf="infoAnnonceSelected">
+                                                <!-- (submit)="addAnnonce()" -->
+                                                <div class="infosAnnonces">
+
+
+                                                    <!-- caractéristiques -->
+                                                    <h5 class="my-3">Caracteristiques du véhicule</h5>
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-6">
+                                                            <div class="mb-3">
+                                                                <label for="moteur" class="form-label">Moteur</label>
+                                                                <!-- <input type="text" class="form-control" name="moteur" id="moteur" placeholder="moteur et description" [(ngModel)]="moteur"> -->
+                                                                <select class="form-select" id="moteur" name="moteur"
+                                                                    aria-label="Default select example"
+                                                                    [(ngModel)]="infoAnnonceSelected.moteur">
+                                                                    <option selected value="Dielsel">Diesel</option>
+                                                                    <option value="Dielsel">Diesel</option>
+                                                                    <option value="Moteur à essence">Moteur à essence
+                                                                    </option>
+                                                                    <option value="Moteur diesel">Moteur diesel</option>
+                                                                    <option value="Moteur hybride">Moteur hybride
+                                                                    </option>
+                                                                    <option value="Moteur électrique">Moteur électrique
+                                                                    </option>
+                                                                    <option value="Moteur à hydrogène">Moteur à
+                                                                        hydrogène</option>
+                                                                    <option value="Electrique">Electrique</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="annee" class="form-label">Année</label>
+                                                                <!-- <input type="month" min="2000" max="2024" class="form-control" name="annee" id="annee" placeholder="année" [(ngModel)]="annee"> -->
+                                                                <label for="year">Année :</label>
+                                                                <select class="form-select" id="year" name="year"
+                                                                    [(ngModel)]="infoAnnonceSelected.annee">
+                                                                    <option *ngFor="let year of years" [value]="year">{{
+                                                                        year }}</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="prix" class="form-label">Prix</label>
+                                                                <input type="number" class="form-control" name="prix"
+                                                                    id="prix" placeholder="prix"
+                                                                    [(ngModel)]="infoAnnonceSelected.prix">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="clim"
+                                                                    class="form-label">Climatisation</label>
+                                                                <select class="form-select" id="clim" name="clim"
+                                                                    aria-label="Default select example"
+                                                                    [(ngModel)]="infoAnnonceSelected.climatisation">
+                                                                    <option selected value="Oui">Oui</option>
+                                                                    <option value="Non">Non</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="marque" class="form-label">Marque</label>
+                                                                <!-- <input type="text" class="form-control" name="marque" id="marque" placeholder="marque du voiture" [(ngModel)]="marque"> -->
+                                                                <select class="form-select" id="marque" name="marque"
+                                                                    aria-label="Default select example"
+                                                                    [(ngModel)]="infoAnnonceSelected.marque">
+                                                                    <option selected value="Ford">Ford</option>
+                                                                    <option value="Chevrolet">Chevrolet</option>
+                                                                    <option value="Volkswagen">Volkswagen</option>
+                                                                    <option value="BMW">BMW</option>
+                                                                    <option value="Mercedes-Benz">Mercedes-Benz</option>
+                                                                    <option value="Audi">Audi</option>
+                                                                    <option value="Hyundai">Hyundai</option>
+                                                                    <option value="Kia">Kia</option>
+                                                                    <option value="Subaru">Subaru</option>
+                                                                    <option value="Tesla">Tesla</option>
+                                                                    <option value="Mazda">Mazda</option>
+                                                                    <option value="Fiat">Fiat</option>
+                                                                    <option value="Volvo">Volvo</option>
+                                                                    <option value="Porsche">Porsche</option>
+                                                                    <option value="Jeep">Jeep</option>
+                                                                    <option value="Lexus">Lexus</option>
+                                                                    <option value="Ducati">Ducati</option>
+                                                                    <option value="Yamaha">Yamaha</option>
+                                                                    <option value="Kawasaki">Kawasaki</option>
+                                                                    <option value="Suzuki">Suzuki</option>
+                                                                    <option value="Harley-Davidson">Harley-Davidson
+                                                                    </option>
+                                                                    <option value="Triumph">Triumph</option>
+                                                                    <option value="Peugeot">Peugeot</option>
+                                                                    <option value="Citroën">Citroën</option>
+                                                                    <option value="Renault">Renault</option>
+                                                                    <option value="Mitsubishi">Mitsubishi</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="couleur" class="form-label">Couleur</label>
+                                                                <!-- <input type="text" class="form-control" name="couleur" id="couleur" placeholder="couleur de la voiture" [(ngModel)]="couleur"> -->
+                                                                <select class="form-select" id="couleur" name="couleur"
+                                                                    aria-label="Default select example"
+                                                                    [(ngModel)]="infoAnnonceSelected.couleur">
+                                                                    <option selected value="Blanc">Blanc</option>
+                                                                    <option value="Noir">Noir</option>
+                                                                    <option value="Gris">Gris</option>
+                                                                    <option value="Bleu">Bleu</option>
+                                                                    <option value="Rouge">Rouge</option>
+                                                                    <option value="Vert">Vert</option>
+                                                                    <option value="Jaune">Jaune</option>
+                                                                    <option value="Marron">Marron</option>
+                                                                    <option value="Beige">Beige</option>
+                                                                    <option value="Argent">Argent</option>
+                                                                    <option value="Or">Or</option>
+                                                                    <option value="Bronze">Bronze</option>
+                                                                    <option value="Rose">Rose</option>
+                                                                    <option value="Violet">Violet</option>
+                                                                    <option value="Turquoise">Turquoise</option>
+                                                                    <option value="Bleu marine">Bleu marine</option>
+                                                                    <option value="Bordeaux">Bordeaux</option>
+                                                                    <option value="Orange">Orange</option>
+                                                                    <option value="Blanc cassé">Blanc cassé</option>
+                                                                    <option value="Anthracite">Anthracite</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="image" class="form-label">Image principal du
+                                                                    véhicule</label>
+                                                                <input (change)="onFileChange($event)"
+                                                                    class="form-control" type="file" id="image"
+                                                                    name="image" accept="image/*" required>
+                                                                <!-- <input type="file" class="form-control" id="imagePrincipal" name="imagePrincipal"> -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-6">
+                                                            <div class="mb-3">
+                                                                <label for="kilometrage"
+                                                                    class="form-label">Kilométrage</label>
+                                                                <!-- <input type="text" class="form-control" name="kilometrage" id="kilometrage" placeholder="Nombre de kilométre parcouru" [(ngModel)]="kilometrage"> -->
+                                                                <select class="form-select" id="kilometrage"
+                                                                    name="kilometrage"
+                                                                    aria-label="Default select example"
+                                                                    [(ngModel)]="infoAnnonceSelected.kilometrage">
+                                                                    <option selected value="neuf">neuf O km</option>
+                                                                    <option value="Kilométrage_tres_bas">Kilométrage
+                                                                        très bas (0 - 10 000 km)</option>
+                                                                    <option value="Kilométrage_bas">Kilométrage bas (10
+                                                                        000 - 50 000 km)</option>
+                                                                    <option value="Kilométrage_moyen">Kilométrage moyen
+                                                                        (50 000 - 100 000 km)</option>
+                                                                    <option value="Kilométrage_élevé">Kilométrage élevé
+                                                                        (100 000 - 150 000 km)</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="carburant"
+                                                                    class="form-label">Carburant</label>
+                                                                <select class="form-select" id="carburant"
+                                                                    name="carburant" aria-label="Default select example"
+                                                                    [(ngModel)]="infoAnnonceSelected.carburant">
+                                                                    <option selected value="Dielsel">Diesel</option>
+                                                                    <option value="Essence">Essence</option>
+                                                                    <option value="Electrique">Electrique</option>
+                                                                </select>
+                                                            </div>
+                                                            <!-- <div class="mb-3">
+                                                                <label for="transmission" class="form-label">Transmission</label>
+                                                                <input type="text" class="form-control" name="transmission" id="transmission"
+                                                                    placeholder="Description sur la transmission du véhicule" [(ngModel)]="transmission">
+                                                            </div> -->
+                                                            <div class="mb-3">
+                                                                <label for="nbrePlace" class="form-label">Nombre de
+                                                                    place</label>
+                                                                <!-- <input type="number" class="form-control" name="carburant" id="carburant" placeholder="0" [(ngModel)]="nbrePlace"> -->
+                                                                <select class="form-select" id="nbrePlace"
+                                                                    name="nbrePlace" aria-label="Default select example"
+                                                                    [(ngModel)]="infoAnnonceSelected.nbrePlace">
+                                                                    <option selected value="Deux places">Deux places
+                                                                    </option>
+                                                                    <option value="Quatre places">Quatre places</option>
+                                                                    <option value="Cinq places">Cinq places</option>
+                                                                    <option value="Six places">Six places</option>
+                                                                    <option value="Sept places">Sept places</option>
+                                                                    <option value="Huit places">Huit places</option>
+                                                                    <option value="Neuf places">Neuf places</option>
+                                                                    <option value="Dix places et plus">Dix places et
+                                                                        plus</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="localisation"
+                                                                    class="form-label">Localisation</label>
+                                                                <!-- <input type="text" class="form-control" name="localisation" id="localisation" placeholder="Rufisque" [(ngModel)]="localisation"> -->
+                                                                <select class="form-select" id="localisation"
+                                                                    name="localisation"
+                                                                    aria-label="Default select example"
+                                                                    [(ngModel)]="infoAnnonceSelected.localisation">
+                                                                    <option selected value="Dakar">Dakar</option>
+                                                                    <option value="Diourbel">Diourbel</option>
+                                                                    <option value="Fatick">Fatick</option>
+                                                                    <option value="Kaffrine">Kaffrine</option>
+                                                                    <option value="Kédougou">Kédougou</option>
+                                                                    <option value="Kolda">Kolda</option>
+                                                                    <option value="Louga">Louga</option>
+                                                                    <option value="Matam">Matam</option>
+                                                                    <option value="Saint Louis">Saint Louis</option>
+                                                                    <option value="Sédiou">Sédiou</option>
+                                                                    <option value="Tambacounda">Tambacounda</option>
+                                                                    <option value="Thies">Thies</option>
+                                                                    <option value="Ziguinchor">Ziguinchor</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="categorie_id" class="form-label">Categorie
+                                                                    du véhicule</label>
+                                                                <select class="form-select" id="categorie_id"
+                                                                    name="categorie_id"
+                                                                    aria-label="Default select example"
+                                                                    [(ngModel)]="infoAnnonceSelected.categorie_id">
+                                                                    <option selected value="{{categorie.id}}"
+                                                                        *ngFor="let categorie of Categories">
+                                                                        {{categorie.nom}} </option>
+                                                                    <!-- <option value= 2>Moto</option>
+                                                                    <option value= 3>Utilitaire</option> -->
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="carosserie"
+                                                                    class="form-label">Carosserie</label>
+                                                                <!-- <input type="text" class="form-control" name="carosserie" id="carosserie" placeholder="Carosserie du véhicule" [(ngModel)]="carosserie"> -->
+                                                                <select class="form-select" id="carosserie"
+                                                                    name="carosserie"
+                                                                    aria-label="Default select example"
+                                                                    [(ngModel)]="infoAnnonceSelected.carosserie">
+                                                                    <option selected value="Berline">Berline</option>
+                                                                    <option value="Coupé">Coupé</option>
+                                                                    <option value="Cabriolet">Cabriolet</option>
+                                                                    <option value="Break">Break</option>
+                                                                    <option value="Monospace">Monospace</option>
+                                                                    <option value="SUV">SUV</option>
+                                                                    <option value="Crossover">Crossover</option>
+                                                                    <option value="Camionnette">Camionnette</option>
+                                                                    <option value="Pickup">Pickup</option>
+                                                                    <option value="Familiale">Familiale</option>
+                                                                    <option value="Routière">Routière</option>
+                                                                    <option value="Van">Van</option>
+                                                                    <option value="Limousine">Limousine</option>
+                                                                    <option value="Voiture_de_course">Voiture de course
+                                                                    </option>
+                                                                    <option value="Voiture_de_luxe">Voiture de luxe
+                                                                    </option>
+                                                                    <option value="Voiture_électrique">Voiture
+                                                                        électrique</option>
+                                                                    <option value="Voiture_hybride">Voiture hybride
+                                                                    </option>
+                                                                    <option value="Voiture_occasion">Voiture d'occasion
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <hr class="my-5">
+
+                                                    <!-- caractéristiques -->
+                                                    <h5 class="my-3">Présntation du véhicule</h5>
+                                                    <div class="mb-3">
+                                                        <label for="nomVehicule" class="form-label">Nom du
+                                                            véhicule</label>
+                                                        <!-- <input type="text" class="form-control" id="nomVehicule" name="nomVehicule" placeholder="nom complet du véhicule" [(ngModel)]="nom"> -->
+                                                        <select class="form-select" id="nomVehicule" name="nomVehicule"
+                                                            aria-label="Default select example"
+                                                            [(ngModel)]="infoAnnonceSelected.nom">
+                                                            <option selected value="Berline">Berline</option>
+                                                            <option value="Coupé">Coupé</option>
+                                                            <option value="Cabriolet">Cabriolet</option>
+                                                            <option value="Break">Break</option>
+                                                            <option value="Monospace">Monospace</option>
+                                                            <option value="SUV">SUV</option>
+                                                            <option value="Crossover">Crossover</option>
+                                                            <option value="Camionnette">Camionnette</option>
+                                                            <option value="Pickup">Pickup</option>
+                                                            <option value="Utilitaire_léger">Utilitaire léger</option>
+                                                            <option value="Utilitaire_lourd">Utilitaire lourd</option>
+                                                            <option value="Van">Van</option>
+                                                            <option value="Camion_citerne">Camion citerne</option>
+                                                            <option value="Bus">Bus</option>
+                                                            <option value="Remarque">Remorque</option>
+                                                            <option value="Camion_citerne">Camion citerne</option>
+                                                            <option value="Moto">Moto (deux roues)</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="descriptionVehicule" class="form-label">descripton
+                                                            du véhicule</label>
+                                                        <textarea class="form-control" id="descriptionVehicule"
+                                                            name="descriptionVehicule"
+                                                            placeholder="Donner une description et l'etat complet du véhicule"
+                                                            [(ngModel)]="infoAnnonceSelected.description"></textarea>
+                                                    </div>
+
+                                                    <hr class="my-5">
+
+                                                    <input type="hidden" value="refuser" name="etat" [(ngModel)]="etat">
+
+                                                    <!-- caractéristiques -->
+                                                    <h5 class="my-3">Images secondaires du véhicule</h5>
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-6">
+                                                            <div class="mb-3">
+                                                                <label for="image1" class="form-label">Image 1</label>
+                                                                <input type="file" (change)="img1($event)"
+                                                                    class="form-control" id="image1" name="image1[]"
+                                                                    accept="image1/*" required>
+                                                                <!-- (change)="img1($event)" -->
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="image2" class="form-label">Image 2</label>
+                                                                <input type="file" (change)="img2($event)"
+                                                                    class="form-control" id="image2" name="image2"
+                                                                    accept="image2/*" required>
+                                                                <!-- (change)="img2($event)" -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-6">
+                                                            <div class="mb-3">
+                                                                <label for="image3" class="form-label">Image 3</label>
+                                                                <input (change)="img3($event)" type="file"
+                                                                    class="form-control" id="image3" name="image3"
+                                                                    accept="image3/*" required>
+                                                                <!-- (change)="img3($event)" -->
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="image4" class="form-label">Image 4</label>
+                                                                <input type="file" (change)="img4($event)"
+                                                                    class="form-control" id="image4" name="image4"
+                                                                    accept="image4/*" required>
+                                                                <!-- (change)="img4($event)" -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <!-- <div class="mb-5">
+                                                        <label for="photoVehicule" class="form-label">Image 1</label>
+                                                        <input (change)="imgSecondaires($event)" type="file" class="form-control" id="photoVehicule" name="photoVehicule[]" accept="photoVehicule/*">
+                                                    </div> -->
+                                                </div>
+
+                                                <hr class="my-5">
+
+                                                <div class="mb-5 d-flex justify-content-center align-content-center">
+                                                    <button class="btn w-50 btnPublier"
+                                                        type="submit">Enregistrer</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="bannerContent mb-2 mt-4 shadow">
+                                        <h5 class="text-center text-light shadow">Vendez votre véhicule de manière simple et rapide</h5>
+                                    </div> -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer shadow">
+                <div class="">
+                    <div class="boutons px-3">
+                        <!-- <button *ngIf="infoAnnonceSelected?.etat=== 'refuser'" class="btnBlue btn"
+                            (click)="updateAnnonceStateActive('accepter')">Activer</button>
+                        <button *ngIf="infoAnnonceSelected?.etat === 'accepter'" class="btnDesactiver btn"
+                            (click)="updateAnnonceStateInactive('refuser')">Désactiver</button>
+                        <button class="btnBlack btn" (click)="detetedAnnonce(infoAnnonceSelected.id)">Supprimer</button>
+                        <button class="btnBlue btn" data-bs-dismiss="modal">
+                            <a href="" routerLink="modifierAnnonce">Modifier</a>
+                        </button> -->
+                        <button class="btnBlack btn" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal detail annonce valide -->
+
+
+<!--Modal detail annonce invalide -->
+
+<div class="modal fade" id="exampleModalInvalide" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <!-- Modal header -->
+            <div class="modal-header shadow">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Informations sur l'annonce</h1>
+                <span type="button" class="btnCloseModal" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i></span>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="profilBody">
+                    <ul class="nav navProfil mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active fw-bold" routerLinkActive="activeLink" id="pills-home-tab" data-bs-toggle="pill"
+                                data-bs-target="#dtInvalideAnnonce" type="button" role="tab" aria-controls="dtProfil" aria-selected="false">
+                                Détails de l'annonce</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link fw-bold" routerLinkActive="activeLink" id="pills-profile-tab" data-bs-toggle="pill"
+                                data-bs-target="#mdfAnnonceInvalide" type="button" role="tab" aria-controls="mdfProfil"
+                                aria-selected="true">Modifier l'annonce</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="dtInvalideAnnonce" role="tabpanel" aria-labelledby="dtProfil-tab"
+                            tabindex="0">
+                            <!-- <h3 class="mb-3">Détails</h3> -->
+                            <hr>
+                            <div class="">
+                                <div class="profil mt-4 rounded-4 py-3 px-4">
+                                    <div class="row mt-3 border shadow py-3 rounded-2">
+                                        <div class="col-12 col-md-7">
+                                            <div id="carouselExampleInterval" class="carousel slide rounded-3 p-4 shadow" data-bs-ride="carousel">
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item active" data-bs-interval="10000">
+                                                        <img src="{{apiImage}}{{infoAnnonceSelected?.image1}}"
+                                                            class="d-block w-100 imgSlide rounded-3" alt="...">
+                                                    </div>
+                                                    <div class="carousel-item" data-bs-interval="2000">
+                                                        <img src="{{apiImage}}{{infoAnnonceSelected?.image2}}"
+                                                            class="d-block w-100 imgSlide rounded-3" alt="...">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img src="{{apiImage}}{{infoAnnonceSelected?.image3}}"
+                                                            class="d-block w-100 imgSlide rounded-3" alt="...">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img src="{{apiImage}}{{infoAnnonceSelected?.image4}}"
+                                                            class="d-block w-100 imgSlide rounded-3" alt="...">
+                                                    </div>
+                                                </div>
+                                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+                                                    data-bs-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Previous</span>
+                                                </button>
+                                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                                                    data-bs-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Next</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-5 infosP" *ngIf="infoProprietaire">
+                                            <div class="contentR">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <img src="{{apiImage}}{{infoProprietaire.image}}" class="img-fluid rounded-4"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="col-12 col-md-6 contRDetail">
+                                                        <p class="infos"> {{infoProprietaire.prenom}} </p>
+                                                        <p class="infos"> {{infoProprietaire.nom}} </p>
+                                                        <p class="infos"> {{infoProprietaire.role}} </p>
+                                                        <p class="infos"> {{infoProprietaire.adresse}} </p>
+                                                        <!-- <p class="infos"> {{infoProprietaire.email}} </p> -->
+                                                    </div>
+                                                </div>
+                                                <div class="iconsprop mt-3">
+                                                    <span><a href="https://wa.me/{{infoProprietaire.telephone}}"><i
+                                                                class="fa-brands fa-whatsapp"></i></a></span>
+                                                    <!-- (click)="getWhatsapp()" -->
+                                                    <span><i class="fa-brands fa-facebook-f"></i></span>
+                                                    <span><a href="mailto:{{infoProprietaire.email}}"><i class="fa-solid fa-envelope"></i></a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <hr class="mt-4">
+                                    <div class="imagesSecondaires">
+                                        <img src="{{apiImage}}{{infoAnnonceSelected?.image1}}" class="shadow" alt="">
+                                        <img src="{{apiImage}}{{infoAnnonceSelected?.image2}}" class="shadow" alt="">
+                                        <img src="{{apiImage}}{{infoAnnonceSelected?.image3}}" class="shadow" alt="">
+                                        <img src="{{apiImage}}{{infoAnnonceSelected?.image4}}" class="shadow" alt="">
+                                    </div>
+                                
+                                    <hr>
+                                    <div class="middleDetail mb-3 d-flex justify-content-center">
+                                        <span>Caractéristique du véhicule</span>
+                                    </div>
+                                    <hr>
+                                
+                                    <div class="contentDetail">
+                                        <div class="caracteristiques">
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Nom:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.nom}} </p>
+                                            </div>
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Moteur:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.moteur}} </p>
+                                            </div>
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Kilométrage:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.kilometrage}}</p>
+                                            </div>
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Année:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.annee}} </p>
+                                            </div>
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Carburant:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.carburant}} </p>
+                                            </div>
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Prix:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.prix}} Fcfa</p>
+                                            </div>
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Carosserie:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.carosserie}}</p>
+                                            </div>
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Couleur:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.couleur}}</p>
+                                            </div>
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Marque:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.marque}}</p>
+                                            </div>
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Adresse:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.localisation}}</p>
+                                            </div>
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Places:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.nbrePlace}}</p>
+                                            </div>
+                                
+                                            <div class="infosV shadow rounded-3">
+                                                <span class="libelle">Descriptiion:</span>
+                                                <p class="value"> {{infoAnnonceSelected?.description}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <hr>
+                                    <div class="middleDetail mb-3 d-flex justify-content-center">
+                                        <span>Liste des commentaires</span>
+                                    </div>
+                                    <hr>
+
+                                    <div *ngIf="tabCommentofAnnonce.length === 0">
+                                        <p class="fw-lighter px-2"> <span class="text-danger">Oops!</span> Pas de commentaires disponibles pour
+                                            cette annonce...</p>
+                                    </div>
+                                    
+                                    <div class="avis">
+                                        <div class="contentLeft w-50 mb-2" *ngFor="let comment of tabCommentofAnnonce">
+                                            <div class="headC d-flex">
+                                                <div class="headL">
+                                                    <img src="{{apiImage}}{{comment.infosProprietaire?.image}}" alt=""
+                                                        class="img-fluid shadow">
+                                                </div>
+                                                <div class="bodyC mx-3">
+                                                    <span class="nomC fw-medium"> {{comment.infosProprietaire?.prenom}} </span>
+                                                    <p class="textC m-0 fw-lighter">
+                                                        {{comment.commentaire}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                        <!-- <div class="contentRight w-50">
+                                            <span class=""><i class="fa-solid fa-square-xmark" (click)="detetedCommentaire(comment.id)"></i></span>
+                                        </div> -->
+                                    </div>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="mdfAnnonceInvalide" role="tabpanel" aria-labelledby="mdfProfil-tab" tabindex="0">
+                            <!-- <h3 class="mb-3">Modification</h3> -->
+                            <hr>
+                            <div class="">
+                                <div class="publishAnnonce my-4">
+                                
+                                    <div class="bannerPublish">
+                                    </div>
+                                    <div class="publishAnnonceContain">
+                                        <h2 class="text-center mt-5 mb-3">Modification de l'annonce</h2>
+                                        <p class="mt-3 mb-3 text-center">Renseigner le formulaire ci-dessous</p>
+                                        <div class="trait mb-4"></div>
+                                
+                                        <div class="formPublish mx-2 shadow p-4 mb-3 rounded-4">
+                                            <form action="" (ngSubmit)="annonceUpdateOnly(infoAnnonceSelected.id)" *ngIf="infoAnnonceSelected">
+                                                <!-- (submit)="addAnnonce()" -->
+                                                <div class="infosAnnonces">
+                                
+                                
+                                                    <!-- caractéristiques -->
+                                                    <h5 class="my-3">Caracteristiques du véhicule</h5>
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-6">
+                                                            <div class="mb-3">
+                                                                <label for="moteur" class="form-label">Moteur</label>
+                                                                <!-- <input type="text" class="form-control" name="moteur" id="moteur" placeholder="moteur et description" [(ngModel)]="moteur"> -->
+                                                                <select class="form-select" id="moteur" name="moteur"
+                                                                    aria-label="Default select example" [(ngModel)]="infoAnnonceSelected.moteur">
+                                                                    <option selected value="Dielsel">Diesel</option>
+                                                                    <option value="Dielsel">Diesel</option>
+                                                                    <option value="Moteur à essence">Moteur à essence</option>
+                                                                    <option value="Moteur diesel">Moteur diesel</option>
+                                                                    <option value="Moteur hybride">Moteur hybride</option>
+                                                                    <option value="Moteur électrique">Moteur électrique</option>
+                                                                    <option value="Moteur à hydrogène">Moteur à hydrogène</option>
+                                                                    <option value="Electrique">Electrique</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="annee" class="form-label">Année</label>
+                                                                <!-- <input type="month" min="2000" max="2024" class="form-control" name="annee" id="annee" placeholder="année" [(ngModel)]="annee"> -->
+                                                                <label for="year">Année :</label>
+                                                                <select class="form-select" id="year" name="year" [(ngModel)]="infoAnnonceSelected.annee">
+                                                                    <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="prix" class="form-label">Prix</label>
+                                                                <input type="number" class="form-control" name="prix" id="prix" placeholder="prix"
+                                                                    [(ngModel)]="infoAnnonceSelected.prix">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="clim" class="form-label">Climatisation</label>
+                                                                <select class="form-select" id="clim" name="clim" aria-label="Default select example"
+                                                                    [(ngModel)]="infoAnnonceSelected.climatisation">
+                                                                    <option selected value="Oui">Oui</option>
+                                                                    <option value="Non">Non</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="marque" class="form-label">Marque</label>
+                                                                <!-- <input type="text" class="form-control" name="marque" id="marque" placeholder="marque du voiture" [(ngModel)]="marque"> -->
+                                                                <select class="form-select" id="marque" name="marque"
+                                                                    aria-label="Default select example" [(ngModel)]="infoAnnonceSelected.marque">
+                                                                    <option selected value="Ford">Ford</option>
+                                                                    <option value="Chevrolet">Chevrolet</option>
+                                                                    <option value="Volkswagen">Volkswagen</option>
+                                                                    <option value="BMW">BMW</option>
+                                                                    <option value="Mercedes-Benz">Mercedes-Benz</option>
+                                                                    <option value="Audi">Audi</option>
+                                                                    <option value="Hyundai">Hyundai</option>
+                                                                    <option value="Kia">Kia</option>
+                                                                    <option value="Subaru">Subaru</option>
+                                                                    <option value="Tesla">Tesla</option>
+                                                                    <option value="Mazda">Mazda</option>
+                                                                    <option value="Fiat">Fiat</option>
+                                                                    <option value="Volvo">Volvo</option>
+                                                                    <option value="Porsche">Porsche</option>
+                                                                    <option value="Jeep">Jeep</option>
+                                                                    <option value="Lexus">Lexus</option>
+                                                                    <option value="Ducati">Ducati</option>
+                                                                    <option value="Yamaha">Yamaha</option>
+                                                                    <option value="Kawasaki">Kawasaki</option>
+                                                                    <option value="Suzuki">Suzuki</option>
+                                                                    <option value="Harley-Davidson">Harley-Davidson</option>
+                                                                    <option value="Triumph">Triumph</option>
+                                                                    <option value="Peugeot">Peugeot</option>
+                                                                    <option value="Citroën">Citroën</option>
+                                                                    <option value="Renault">Renault</option>
+                                                                    <option value="Mitsubishi">Mitsubishi</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="couleur" class="form-label">Couleur</label>
+                                                                <!-- <input type="text" class="form-control" name="couleur" id="couleur" placeholder="couleur de la voiture" [(ngModel)]="couleur"> -->
+                                                                <select class="form-select" id="couleur" name="couleur"
+                                                                    aria-label="Default select example" [(ngModel)]="infoAnnonceSelected.couleur">
+                                                                    <option selected value="Blanc">Blanc</option>
+                                                                    <option value="Noir">Noir</option>
+                                                                    <option value="Gris">Gris</option>
+                                                                    <option value="Bleu">Bleu</option>
+                                                                    <option value="Rouge">Rouge</option>
+                                                                    <option value="Vert">Vert</option>
+                                                                    <option value="Jaune">Jaune</option>
+                                                                    <option value="Marron">Marron</option>
+                                                                    <option value="Beige">Beige</option>
+                                                                    <option value="Argent">Argent</option>
+                                                                    <option value="Or">Or</option>
+                                                                    <option value="Bronze">Bronze</option>
+                                                                    <option value="Rose">Rose</option>
+                                                                    <option value="Violet">Violet</option>
+                                                                    <option value="Turquoise">Turquoise</option>
+                                                                    <option value="Bleu marine">Bleu marine</option>
+                                                                    <option value="Bordeaux">Bordeaux</option>
+                                                                    <option value="Orange">Orange</option>
+                                                                    <option value="Blanc cassé">Blanc cassé</option>
+                                                                    <option value="Anthracite">Anthracite</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="image" class="form-label">Image principal du véhicule</label>
+                                                                <input (change)="onFileChange($event)" class="form-control" type="file"
+                                                                    id="image" name="image" accept="image/*" required>
+                                                                <!-- <input type="file" class="form-control" id="imagePrincipal" name="imagePrincipal"> -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-6">
+                                                            <div class="mb-3">
+                                                                <label for="kilometrage" class="form-label">Kilométrage</label>
+                                                                <!-- <input type="text" class="form-control" name="kilometrage" id="kilometrage" placeholder="Nombre de kilométre parcouru" [(ngModel)]="kilometrage"> -->
+                                                                <select class="form-select" id="kilometrage" name="kilometrage"
+                                                                    aria-label="Default select example" [(ngModel)]="infoAnnonceSelected.kilometrage">
+                                                                    <option selected value="neuf">neuf O km</option>
+                                                                    <option value="Kilométrage_tres_bas">Kilométrage très bas (0 - 10 000 km)</option>
+                                                                    <option value="Kilométrage_bas">Kilométrage bas (10 000 - 50 000 km)</option>
+                                                                    <option value="Kilométrage_moyen">Kilométrage moyen (50 000 - 100 000 km)</option>
+                                                                    <option value="Kilométrage_élevé">Kilométrage élevé (100 000 - 150 000 km)</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="carburant" class="form-label">Carburant</label>
+                                                                <select class="form-select" id="carburant" name="carburant"
+                                                                    aria-label="Default select example" [(ngModel)]="infoAnnonceSelected.carburant">
+                                                                    <option selected value="Dielsel">Diesel</option>
+                                                                    <option value="Essence">Essence</option>
+                                                                    <option value="Electrique">Electrique</option>
+                                                                </select>
+                                                            </div>
+                                                            <!-- <div class="mb-3">
+                                                                <label for="transmission" class="form-label">Transmission</label>
+                                                                <input type="text" class="form-control" name="transmission" id="transmission"
+                                                                    placeholder="Description sur la transmission du véhicule" [(ngModel)]="transmission">
+                                                            </div> -->
+                                                            <div class="mb-3">
+                                                                <label for="nbrePlace" class="form-label">Nombre de place</label>
+                                                                <!-- <input type="number" class="form-control" name="carburant" id="carburant" placeholder="0" [(ngModel)]="nbrePlace"> -->
+                                                                <select class="form-select" id="nbrePlace" name="nbrePlace"
+                                                                    aria-label="Default select example" [(ngModel)]="infoAnnonceSelected.nbrePlace">
+                                                                    <option selected value="Deux places">Deux places</option>
+                                                                    <option value="Quatre places">Quatre places</option>
+                                                                    <option value="Cinq places">Cinq places</option>
+                                                                    <option value="Six places">Six places</option>
+                                                                    <option value="Sept places">Sept places</option>
+                                                                    <option value="Huit places">Huit places</option>
+                                                                    <option value="Neuf places">Neuf places</option>
+                                                                    <option value="Dix places et plus">Dix places et plus</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="localisation" class="form-label">Localisation</label>
+                                                                <!-- <input type="text" class="form-control" name="localisation" id="localisation" placeholder="Rufisque" [(ngModel)]="localisation"> -->
+                                                                <select class="form-select" id="localisation" name="localisation"
+                                                                    aria-label="Default select example" [(ngModel)]="infoAnnonceSelected.localisation">
+                                                                    <option selected value="Dakar">Dakar</option>
+                                                                    <option value="Diourbel">Diourbel</option>
+                                                                    <option value="Fatick">Fatick</option>
+                                                                    <option value="Kaffrine">Kaffrine</option>
+                                                                    <option value="Kédougou">Kédougou</option>
+                                                                    <option value="Kolda">Kolda</option>
+                                                                    <option value="Louga">Louga</option>
+                                                                    <option value="Matam">Matam</option>
+                                                                    <option value="Saint Louis">Saint Louis</option>
+                                                                    <option value="Sédiou">Sédiou</option>
+                                                                    <option value="Tambacounda">Tambacounda</option>
+                                                                    <option value="Thies">Thies</option>
+                                                                    <option value="Ziguinchor">Ziguinchor</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="categorie_id" class="form-label">Categorie du véhicule</label>
+                                                                <select class="form-select" id="categorie_id" name="categorie_id"
+                                                                    aria-label="Default select example" [(ngModel)]="infoAnnonceSelected.categorie_id">
+                                                                    <option selected value="{{categorie.id}}" *ngFor="let categorie of Categories">
+                                                                        {{categorie.nom}} </option>
+                                                                    <!-- <option value= 2>Moto</option>
+                                                                    <option value= 3>Utilitaire</option> -->
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="carosserie" class="form-label">Carosserie</label>
+                                                                <!-- <input type="text" class="form-control" name="carosserie" id="carosserie" placeholder="Carosserie du véhicule" [(ngModel)]="carosserie"> -->
+                                                                <select class="form-select" id="carosserie" name="carosserie"
+                                                                    aria-label="Default select example" [(ngModel)]="infoAnnonceSelected.carosserie">
+                                                                    <option selected value="Berline">Berline</option>
+                                                                    <option value="Coupé">Coupé</option>
+                                                                    <option value="Cabriolet">Cabriolet</option>
+                                                                    <option value="Break">Break</option>
+                                                                    <option value="Monospace">Monospace</option>
+                                                                    <option value="SUV">SUV</option>
+                                                                    <option value="Crossover">Crossover</option>
+                                                                    <option value="Camionnette">Camionnette</option>
+                                                                    <option value="Pickup">Pickup</option>
+                                                                    <option value="Familiale">Familiale</option>
+                                                                    <option value="Routière">Routière</option>
+                                                                    <option value="Van">Van</option>
+                                                                    <option value="Limousine">Limousine</option>
+                                                                    <option value="Voiture_de_course">Voiture de course</option>
+                                                                    <option value="Voiture_de_luxe">Voiture de luxe</option>
+                                                                    <option value="Voiture_électrique">Voiture électrique</option>
+                                                                    <option value="Voiture_hybride">Voiture hybride</option>
+                                                                    <option value="Voiture_occasion">Voiture d'occasion</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                
+                                                    <hr class="my-5">
+                                
+                                                    <!-- caractéristiques -->
+                                                    <h5 class="my-3">Présntation du véhicule</h5>
+                                                    <div class="mb-3">
+                                                        <label for="nomVehicule" class="form-label">Nom du véhicule</label>
+                                                        <!-- <input type="text" class="form-control" id="nomVehicule" name="nomVehicule" placeholder="nom complet du véhicule" [(ngModel)]="nom"> -->
+                                                        <select class="form-select" id="nomVehicule" name="nomVehicule"
+                                                            aria-label="Default select example" [(ngModel)]="infoAnnonceSelected.nom">
+                                                            <option selected value="Berline">Berline</option>
+                                                            <option value="Coupé">Coupé</option>
+                                                            <option value="Cabriolet">Cabriolet</option>
+                                                            <option value="Break">Break</option>
+                                                            <option value="Monospace">Monospace</option>
+                                                            <option value="SUV">SUV</option>
+                                                            <option value="Crossover">Crossover</option>
+                                                            <option value="Camionnette">Camionnette</option>
+                                                            <option value="Pickup">Pickup</option>
+                                                            <option value="Utilitaire_léger">Utilitaire léger</option>
+                                                            <option value="Utilitaire_lourd">Utilitaire lourd</option>
+                                                            <option value="Van">Van</option>
+                                                            <option value="Camion_citerne">Camion citerne</option>
+                                                            <option value="Bus">Bus</option>
+                                                            <option value="Remarque">Remorque</option>
+                                                            <option value="Camion_citerne">Camion citerne</option>
+                                                            <option value="Moto">Moto (deux roues)</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="descriptionVehicule" class="form-label">descripton du véhicule</label>
+                                                        <textarea class="form-control" id="descriptionVehicule" name="descriptionVehicule"
+                                                            placeholder="Donner une description et l'etat complet du véhicule"
+                                                            [(ngModel)]="infoAnnonceSelected.description"></textarea>
+                                                    </div>
+                                
+                                                    <hr class="my-5">
+                                
+                                                    <input type="hidden" value="refuser" name="etat" [(ngModel)]="etat">
+                                
+                                                    <!-- caractéristiques -->
+                                                    <h5 class="my-3">Images secondaires du véhicule</h5>
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-6">
+                                                            <div class="mb-3">
+                                                                <label for="image1" class="form-label">Image 1</label>
+                                                                <input type="file" (change)="img1($event)" class="form-control" id="image1"
+                                                                    name="image1[]" accept="image1/*" required>
+                                                                <!-- (change)="img1($event)" -->
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="image2" class="form-label">Image 2</label>
+                                                                <input type="file" (change)="img2($event)" class="form-control" id="image2"
+                                                                    name="image2" accept="image2/*" required>
+                                                                <!-- (change)="img2($event)" -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-6">
+                                                            <div class="mb-3">
+                                                                <label for="image3" class="form-label">Image 3</label>
+                                                                <input (change)="img3($event)" type="file" class="form-control" id="image3"
+                                                                    name="image3" accept="image3/*" required>
+                                                                <!-- (change)="img3($event)" -->
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="image4" class="form-label">Image 4</label>
+                                                                <input type="file" (change)="img4($event)" class="form-control" id="image4"
+                                                                    name="image4" accept="image4/*" required>
+                                                                <!-- (change)="img4($event)" -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                
+                                
+                                
+                                                    <!-- <div class="mb-5">
+                                                        <label for="photoVehicule" class="form-label">Image 1</label>
+                                                        <input (change)="imgSecondaires($event)" type="file" class="form-control" id="photoVehicule" name="photoVehicule[]" accept="photoVehicule/*">
+                                                    </div> -->
+                                                </div>
+                                
+                                                <hr class="my-5">
+                                
+                                                <div class="mb-5 d-flex justify-content-center align-content-center">
+                                                    <button class="btn w-50 btnPublier" type="submit">Enregistrer</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                
+                                    <!-- <div class="bannerContent mb-2 mt-4 shadow">
+                                        <h5 class="text-center text-light shadow">Vendez votre véhicule de manière simple et rapide</h5>
+                                    </div> -->
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer shadow">
+                <div class="">
+                    <div class="boutons px-3">
+                        <!-- <button *ngIf="infoAnnonceSelected?.etat=== 'refuser'" class="btnBlue btn"
+                            (click)="updateAnnonceStateActive('accepter')">Activer</button>
+                        <button *ngIf="infoAnnonceSelected?.etat === 'accepter'" class="btnDesactiver btn"
+                            (click)="updateAnnonceStateInactive('refuser')">Désactiver</button>
+                        <button class="btnBlack btn" (click)="detetedAnnonce(infoAnnonceSelected.id)">Supprimer</button>
+                        <button class="btnBlue btn" data-bs-dismiss="modal">
+                            <a href="" routerLink="modifierAnnonce">Modifier</a>
+                        </button> -->
+                        <button class="btnBlack btn" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal detail annonce invalide -->

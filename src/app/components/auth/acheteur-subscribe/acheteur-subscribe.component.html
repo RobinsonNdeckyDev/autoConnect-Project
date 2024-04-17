@@ -1,0 +1,269 @@
+<div class="container login">
+    <div class="connect my-5">
+        <div class="loginContain row m-0 shadow">
+            <div class="col-12 col-md-6 formulaire">
+                <div class="px-3">
+                    <a href="" class=""><img src="/assets/images/auth/logo-removebg-preview.png" alt=""
+                            class="imgFluid"></a>
+                    <h2 class="mb-3 text-center">Inscrivez-vous</h2>
+
+                    <div class=" mt-4">
+                        <form class="" (submit)="inscriptionAcheteur()">
+                            <!-- Contenu dynamique de l'étape (submit)="addAnnonce()" -->
+                            <div *ngIf="currentStep === 1">
+                                <!-- ÉTAPE 1 -->
+                                <!-- <h5 class="card-title text-center">Étape 1</h5> -->
+                                <!-- <h5 class="my-3"></h5> -->
+
+                                <div class="mb-2 inputs">
+                                    <label for="prenom" class="form-label">Prénom</label>
+                                    <input type="text" name="prenom" id="prenom" class="form-control" [(ngModel)]="prenom" (input)="validatePrenom()">
+                                    <span *ngIf="prenomTouched && prenomEmpty && !validationMessages['prenom']" class="text-danger">
+                                        Le prénom est requis
+                                    </span>
+                                    <span *ngIf="validationMessages['prenom']" class="text-danger">{{ validationMessages['prenom'] }}</span>
+                                    <span *ngIf="!validationMessages['prenom'] && prenom" class="text-success">Correct</span>
+                                </div>
+
+                                <div class="mb-2 inputs">
+                                    <label for="nom" class="form-label">Nom</label>
+                                    <input type="text" name="nom" id="nom" class="form-control" [(ngModel)]="nom" (input)="validateNom()">
+                                    <span *ngIf="nomTouched && nomEmpty && !validationMessages['nom']" class="text-danger">
+                                        Le prénom est requis
+                                    </span>
+                                    <span *ngIf="validationMessages['nom']" class="text-danger">{{ validationMessages['nom'] }}</span>
+                                    <span *ngIf="!validationMessages['nom'] && nom" class="text-success">Correct</span>
+                                </div>
+
+                                <div class="mb-3 inputs">
+                                    <label for="image" class="form-label">Photo de profil</label>
+                                    <input (change)="profilAdd($event)" type="file" name="image" id="image" class="form-control" accept="image/*">
+                                    <span *ngIf="photoTouched && photoEmpty && !validationMessages['photo']" class="text-danger">
+                                        La photo de profil est requise
+                                    </span>
+                                    <span *ngIf="validationMessages['photo']" class="text-danger">{{ validationMessages['photo'] }}</span>
+                                    <span *ngIf="!validationMessages['photo'] && image" class="text-success">Correct</span>
+                                </div>
+                                
+                                <div class="d-flex justify-content-center">
+                                    <button type="button" class="btn btnFStep" (click)="nextStep()" [disabled]="!prenom || !nom || !image">Suivant</button>
+                                </div>
+                                
+                            </div>
+                            <div *ngIf="currentStep === 2">
+                                <!-- ÉTAPE 2 -->
+                                <!-- <h5 class="card-title text-center">Étape 2</h5> -->
+                                <!-- <h5 class="my-3"></h5> -->
+
+                                <div class="mb-2 inputs">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" name="email" id="email" class="form-control" [(ngModel)]="email"
+                                        (input)="validateEmail()">
+                                    <span *ngIf="emailTouched && emailEmpty && !validationMessages['email']" class="text-danger">
+                                        Le prénom est requis
+                                    </span>
+                                    <span *ngIf="validationMessages['email']" class="text-danger">{{ validationMessages['email'] }}</span>
+                                    <span *ngIf="!validationMessages['email'] && email" class="text-success">Correct</span>
+                                </div>
+
+                                <div class="mb-2 inputs">
+                                    <label for="adresse" class="form-label">Adresse</label>
+                                    <input type="text" name="adresse" id="adresse" class="form-control" [(ngModel)]="adresse" (input)="validateAdresse()">
+                                    <span *ngIf="adresseTouched && adresseEmpty && !validationMessages['adresse']" class="text-danger">
+                                        Le prénom est requis
+                                    </span>
+                                    <span *ngIf="validationMessages['adresse']" class="text-danger">{{ validationMessages['adresse'] }}</span>
+                                    <span *ngIf="!validationMessages['adresse'] && adresse" class="text-success">Correct</span>
+                                </div>
+
+                                <div class="mb-2 inputs">
+                                    <label for="telephone" class="form-label">Téléphone</label>
+                                    <input type="telephone" name="telephone" id="telephone" class="form-control" [(ngModel)]="telephone" (input)="validateTelephone()">
+                                    <span *ngIf="telephoneTouched && telephoneEmpty && !validationMessages['telephone']" class="text-danger">
+                                        Le prénom est requis
+                                    </span>
+                                    <span *ngIf="validationMessages['telephone']" class="text-danger">{{ validationMessages['telephone'] }}</span>
+                                    <span *ngIf="!validationMessages['telephone'] && telephone" class="text-success">Correct</span>
+                                </div>
+
+
+                                <!-- <div class="mb-2 inputs">
+                                    <label for="image" class="form-label">Photo de profil</label>
+                                    <input (change)="profilAdd($event)" type="file" class="form-control" id="image" name="image"
+                                        accept="image/*">
+                                    <span *ngIf="photoTouched && photoEmpty && !validationMessages['photo']" class="text-danger">
+                                        La photo de profil est requise
+                                    </span>
+                                    <span *ngIf="validationMessages['photo']" class="text-danger">{{ validationMessages['photo'] }}</span>
+                                    <span *ngIf="!validationMessages['photo'] && image" class="text-success">Correct</span>
+                                </div> -->
+                                
+                                <!-- <div class="mb-2 inputs">
+                                    <label for="description" class="form-label">Description</label>
+                                    <textarea name="description" id="description" class="form-control" [(ngModel)]="description" (input)="validateDescription()"></textarea>
+                                    <span *ngIf="descriptionTouched && descriptionEmpty && !validationMessages['description']" class="text-danger">
+                                        La description est requise
+                                    </span>
+                                    <span *ngIf="validationMessages['description']" class="text-danger">{{ validationMessages['description'] }}</span>
+                                    <span *ngIf="!validationMessages['description'] && description" class="text-success">Correct</span>
+                                </div> -->
+    
+                                <div class="d-flex justify-content-center mt-3">
+                                    <button type="button" class="btn btnFStepBlack" (click)="prevStep()">Précédent</button>
+                                    <button type="button" class="btn btnFStep" (click)="nextStep()" [disabled]="!email || !adresse || !telephone">
+                                        Suivant
+                                    </button>
+                                </div>
+                                
+                            </div>
+                            <div *ngIf="currentStep === 3">
+                                <!-- ÉTAPE 3 -->
+                                <!-- <h5 class="card-title text-center">Étape 3</h5> -->
+                                <!-- <h5 class="my-3"></h5> -->
+
+                                <div class="mb-2 inputs">
+                                    <label for="password" class="form-label">Mot de passe</label>
+                                    <input type="password" name="password" id="password" class="form-control" [(ngModel)]="password" (input)="validatePassword()">
+                                    <span *ngIf="passwordTouched && passwordEmpty && !validationMessages['password']" class="text-danger">
+                                        Le prénom est requis
+                                    </span>
+                                    <span *ngIf="validationMessages['password']" class="text-danger">{{ validationMessages['password'] }}</span>
+                                    <span *ngIf="!validationMessages['password'] && password" class="text-success">Correct</span>
+                                </div>
+    
+                                <div class="mb-2 inputs">
+                                    <label for="confirmation" class="form-label">Confirmer mot de passe</label>
+                                    <input type="password" name="confirmation" id="confirmation" class="form-control" [(ngModel)]="confirmation" (input)="validateConfirmationPassword()">
+                                    <span *ngIf="confirmationTouched && confirmationEmpty && !validationMessages['confirmation']" class="text-danger">
+                                        Le prénom est requis
+                                    </span>
+                                    <span *ngIf="validationMessages['confirmation']" class="text-danger">{{ validationMessages['confirmation'] }}</span>
+                                    <span *ngIf="!validationMessages['confirmation'] && confirmation" class="text-success">Correct</span>
+                                </div>
+                                
+                                <input type="hidden" value="vendeur" name="role" />
+                                
+                                <div class="d-flex justify-content-center mt-3">
+                                    <!-- <button type="button" class="btn btnFStepBlack" (click)="prevStep()">Précédent</button> -->
+                                    <button type="submit" class="btn btnFStep" [disabled]="!password || !confirmation || !confirmation">Soumettre</button>
+                                    <button type="button" class="btn btnFStepBlack" (click)="annulerInscription()">Annuler</button>
+                                </div>
+                                
+                            </div>
+                        </form>
+                    </div>
+
+
+
+
+
+
+
+                    <!-- <form action="" class="">
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="mb-3 inputs">
+                                    <label for="prenom" class="form-label">Prénom</label>
+                                    <input type="text" name="prenom" id="prenom" class="form-control" [(ngModel)]="prenom" (input)="validatePrenom()">
+                                    <span *ngIf="prenomTouched && prenomEmpty && !validationMessages['prenom']" class="text-danger">
+                                        Le prénom est requis
+                                    </span>
+                                    <span *ngIf="validationMessages['prenom']" class="text-danger">{{ validationMessages['prenom'] }}</span>
+                                    <span *ngIf="!validationMessages['prenom'] && prenom" class="text-success">Correct</span>
+                                </div>
+
+                                <div class="mb-3 inputs">
+                                    <label for="telephone" class="form-label">Téléphone</label>
+                                    <input type="tel" name="telephone" id="telephone" class="form-control" [(ngModel)]="telephone" (input)="validateTelephone()">
+                                    <span *ngIf="telephoneTouched && telephoneEmpty && !validationMessages['telephone']" class="text-danger">
+                                        Le numéro de téléphone est requis
+                                    </span>
+                                    <span *ngIf="validationMessages['telephone']" class="text-danger">{{ validationMessages['telephone'] }}</span>
+                                    <span *ngIf="!validationMessages['telephone'] && telephone" class="text-success">Correct</span>
+                                </div>
+
+                                <div class="mb-3 inputs">
+                                    <label for="adresse" class="form-label">Adresse</label>
+                                    <input type="text" name="adresse" id="adresse" class="form-control" [(ngModel)]="adresse" (input)="validateAdresse()">
+                                    <span *ngIf="adresseTouched && adresseEmpty && !validationMessages['adresse']" class="text-danger">
+                                        L'adresse est requise
+                                    </span>
+                                    <span *ngIf="validationMessages['adresse']" class="text-danger">{{ validationMessages['adresse'] }}</span>
+                                    <span *ngIf="!validationMessages['adresse'] && adresse" class="text-success">Correct</span>
+                                </div>
+
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                
+
+                                <div class="mb-3 inputs">
+                                    <label for="password" class="form-label">Mot de passe</label>
+                                    <input type="password" name="password" id="password" class="form-control" [(ngModel)]="password" (input)="validatePassword()">
+                                    <span *ngIf="passwordTouched && passwordEmpty && !validationMessages['password']" class="text-danger">
+                                        Le mot de passe est requis
+                                    </span>
+                                    <span *ngIf="validationMessages['password']" class="text-danger">{{ validationMessages['password'] }}</span>
+                                    <span *ngIf="!validationMessages['password'] && password" class="text-success">Correct</span>
+                                </div>
+
+                                <div class="mb-3 inputs">
+                                    <label for="confirmation" class="form-label">Confirmation mot de passe</label>
+                                    <input type="password" name="confirmation" id="confirmation" class="form-control" [(ngModel)]="confirmation" (input)="validateConfirmationPassword()">
+                                    <span *ngIf="confirmationTouched && confirmationEmpty && !validationMessages['confirmation']" class="text-danger">
+                                        La confirmation du mot de passe est requise
+                                    </span>
+                                    <span *ngIf="validationMessages['confirmation']" class="text-danger">{{ validationMessages['confirmation'] }}</span>
+                                    <span *ngIf="!validationMessages['confirmation'] && confirmation" class="text-success">Correct</span>
+                                </div>
+
+
+                                <input type="hidden" value="acheteur" name="role" />
+                            </div>
+
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <div class="mb-3 inputs">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" name="email" id="email" class="form-control" [(ngModel)]="email" (input)="validateEmail()">
+                                            <span *ngIf="emailTouched && emailEmpty && !validationMessages['email']" class="text-danger">
+                                                L'email est requis
+                                            </span>
+                                            <span *ngIf="validationMessages['email']" class="text-danger">{{ validationMessages['email'] }}</span>
+                                            <span *ngIf="!validationMessages['email'] && email" class="text-success">Correct</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="bouton mt-4">
+                            <button class="btn w-50" (click)="inscriptionAcheteur()"
+                            [disabled]="!email || !password || !prenom || !nom || !telephone || !adresse || !confirmation || !image"
+                            >
+                                S'inscrire
+                            </button>
+                        </div>
+
+                        <p class="mt-3 inscription ">
+                            Vous avez déja un compte ?
+                            <a class="fw-bold" style="cursor: pointer;" routerLink="/login">
+                                Connectez-vous
+                            </a>
+                        </p>
+
+                    </form> -->
+                </div>
+            </div>
+            <div class="col-12 col-md-6 p-0">
+                <img src="/assets/images/auth/profilConnect2.png" class="img-fluid profilImg w-100 h-100" alt="tets">
+            </div>
+        </div>
+    </div>
+</div>

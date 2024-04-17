@@ -1,0 +1,72 @@
+<div class="mt-5 containAdmin">
+    <div class="profilContain py-3 mx-4">
+        <!-- <h3 class="navTitle mb-3"><a href="">Mon profil /</a></h3> -->
+    
+        <div class="profil mt-2 shadow rounded-4 py-3 px-4">
+            <!-- <div class="profilhead">
+                <h3>Modifier mon profil</h3>
+            </div>
+            <hr> -->
+            <div class="profilBody">
+                <ul class="nav navProfil mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" routerLinkActive="activeLink" id="pills-home-tab" data-bs-toggle="pill"
+                            data-bs-target="#dtProfil" type="button" role="tab" aria-controls="dtProfil"
+                            aria-selected="true">Mes informations</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="dtProfil" role="tabpanel" aria-labelledby="dtProfil-tab"
+                        tabindex="0">
+                        <h3 class="mb-3">Infos</h3>
+                        <hr>
+                        <div>
+                            <div class="profilInfos row">
+                                <div class="profilImg col-12 col-md-5">
+                                    <img src="../../../../assets/images/profil/profil2.jpg" alt="" class="img-fluid">
+                                </div>
+                                <div class="profilDetail col-12 col-md-7">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 pfInfos">
+                                            <div>
+                                                <div class="mb-3">
+                                                    <p for="prenom" class="form-label"> {{userConnected.prenom}}
+                                                        {{userConnected.nom}}</p>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <p for="prenom" class="form-label"> {{userConnected.adresse}} </p>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <p for="prenom" class="form-label"> {{userConnected.telephone}} </p>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <p for="prenom" class="form-label"> {{userConnected.email}} </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 pfInfos">
+                                            <div>
+                                                <div class="mb-3 logo">
+                                                    <img src="/assets/images/logo2-removebg-preview.png" alt=""
+                                                        class="img-fluid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <hr>
+                            <h3>Description</h3>
+                            <hr>
+                            <div class="mb-5">
+                                <p for="prenom" class="form-label"> {{userConnected.description}} </p>
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

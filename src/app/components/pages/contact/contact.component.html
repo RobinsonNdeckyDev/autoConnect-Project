@@ -1,0 +1,100 @@
+<app-navbar></app-navbar>
+
+<section class="bannerContact mt-5 "></section>
+
+<section class="coods py-3 mb-4 mt-0" [attr.data-aos]="'fade-up'" [attr.data-aos-duration]="1000"
+    [attr.data-aos-delay]="900">
+    <div class="coodsContainer container">
+        <h2 class="text-center my-3">Nos coordonnées</h2>
+        <div class="trait mb-3"></div>
+
+        <div class="coodscartes mt-5">
+            <div class="row m-0 g-3">
+                <div class="col-12 col-md-4">
+                    <div class="card py-3 px-2 shadow">
+                        <span class="icon"><i class="fa-solid fa-phone"></i></span>
+                        <p class="titrecoods">Numéro de téléphone</p>
+                        <p class="textCoods">77 777 77 77</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="card py-3 px-2 shadow">
+                        <span class="icon mb-3 mt-3"><i class="fa-solid fa-envelope"></i></span>
+                        <p class="titrecoods mb-3">autoconnect@gmail.com</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="card py-3 px-2 shadow">
+                        <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
+                        <p class="titrecoods">Emplacement</p>
+                        <p class="textCoods">Dakar Cité Autoconnect</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="formContact py-1 mt-5" [attr.data-aos]="'fade-in'" [attr.data-aos-duration]="1000"
+    [attr.data-aos-delay]="980">
+    <div class="contactContain container">
+        <div class="container p-0 my-5 RC ">
+            <div class="row m-0">
+                <div class="col-12 col-md-7 p-5 form">
+                    <div class=" formContain">
+                        <h3 class="text-center mb-3">Contactez-nous</h3>
+                        <form action="" (ngSubmit)="newContact()">
+                            <div class="mb-3">
+                                <label for="NomComplet">Nom complet</label>
+                                <input type="text" class="form-control" name="Nomcomplet" id="NomComplet"
+                                    [(ngModel)]="nomComplet" (input)="validateNomComplet()">
+                                <span *ngIf="nomCompletTouched && nomCompletEmpty && !validationMessages['nomComplet']" class="text-danger">
+                                    Le nom au complet est requis
+                                </span>
+                                <span *ngIf="validationMessages['nomComplet']" class="text-danger">{{ validationMessages['nomComplet'] }}</span>
+                                <span *ngIf="!validationMessages['nomComplet'] && nomComplet" class="text-success">Correct</span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Email">Email</label>
+                                <input type="email" class="form-control" name="Email" id="Email" [(ngModel)]="email" (input)="validateEmail()">
+                                <span *ngIf="emailTouched && emailEmpty && !validationMessages['email']" class="text-danger">
+                                    L'email est requis
+                                </span>
+                                <span *ngIf="validationMessages['email']" class="text-danger">{{ validationMessages['email'] }}</span>
+                                <span *ngIf="!validationMessages['email'] && email" class="text-success">Correct</span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Message">Message</label>
+                                <textarea name="message" id="Message" class="form-control"
+                                    [(ngModel)]="message" (input)="validateMessage()"></textarea>
+                                <span *ngIf="messageTouched && messageEmpty && !validationMessages['message']" class="text-danger">
+                                    Le message est requis
+                                </span>
+                                <span *ngIf="validationMessages['message']" class="text-danger">{{ validationMessages['message'] }}</span>
+                                <span *ngIf="!validationMessages['message'] && message" class="text-success">Correct</span>
+                            </div>
+
+                            <div class="bouton d-flex justify-content-center align-content-center">
+                                <button class="btn w-50" type="submit" [disabled]="!email || !message || !nomComplet">
+                                    Envoyer
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-md-5 p-0">
+                    <img src="../../../../assets/images/contact/profContact.png" class="img-fluid w-100 m-0" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bannerEnd" [attr.data-aos]="'fade-up'" [attr.data-aos-duration]="1000" [attr.data-aos-delay]="1200">
+</section>
+
+<app-scroll-button></app-scroll-button>
+
+<app-footer></app-footer>

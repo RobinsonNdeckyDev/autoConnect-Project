@@ -1,0 +1,104 @@
+<div class="vendeurContain py-4 px-4">
+    <h3 class="navTitle"><a href="" routerLink="proprietaires" class="my-3">Utilisateurs / Propriétaires</a></h3>
+
+    <div class="row .row2 mt-4 shadow rounded-4">
+        <div class="col-12 ">
+            <div class="tableCard py-4 border-0">
+                <div *ngIf="isLoading">
+                    <!-- Attendez que les données soient chargées -->
+                    <p class="fw-lighter fw-bold"> <span class="text-chargement">Chargement en cours...</span></p>
+                </div>
+
+                <div *ngIf="!isLoading && proprietaires.length === 0">
+                    <p class="fw-lighter px-2"> <span class="text-danger">Oops!</span> Pas de propriétaires disponibles
+                        pour l'instant...</p>
+                </div>
+
+                <div class="table-responsive" *ngIf="!isLoading && proprietaires.length > 0">
+                    <table datatable [dtOptions]="dtOptions" class="table row-border hover w-100"
+                        *ngIf="proprietaires.length > 0">
+                        <thead>
+                            <tr class="text-center titleHead">
+                                <th scope="col">image</th>
+                                <th scope="col">prenom</th>
+                                <th scope="col">nom</th>
+                                <th scope="col">email</th>
+                                <th scope="col">telephone</th>
+                                <th scope="col">adresse</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center" *ngFor="let proprietaire of proprietaires">
+                                <td scope="col"><img src="https://adamarahma99.simplonfabriques.com/images/{{ proprietaire.image }}"
+                                        class="shadow imgProp" alt=""></td>
+                                <td scope="col">{{ proprietaire.prenom }}</td>
+                                <td scope="col">{{ proprietaire.nom }}</td>
+                                <td scope="col">{{ proprietaire.email }}</td>
+                                <td scope="col">{{ proprietaire.telephone }}</td>
+                                <td scope="col">{{ proprietaire.adresse }}</td>
+                                <td scope="col">
+                                    <span class="mx-2"><i class="fa-solid fa-eye iconDetail" data-bs-toggle="modal"
+                                            data-bs-target="#detailProprietaire"
+                                            (click)="openProprietaireDetails(proprietaire)"></i>
+                                    </span>
+                                    <span class="mx-2"><i class="bi bi-x-square-fill iconDetail"
+                                            (click)="supprimerProprietaire(proprietaire)"></i>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Modal Bootstrap pour afficher les détails du proprietaire -->
+<div class="modal fade" id="detailProprietaire" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header shadow">
+                <h5 class="modal-title" id="detailBlogLabel">Détails du proprietaire</h5>
+                <span class="btnClose " data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i></span>
+            </div>
+            <div class="modal-body">
+                <div class="userContain">
+
+                    <div class="imgUser d-flex justify-content-center my-1">
+                        <img src="https://adamarahma99.simplonfabriques.com/images/{{ selectedProprietaire?.image }}" alt=""
+                            class="img-fluid">
+                    </div>
+
+                    <div class="">
+                        <h4 class="text-center mb-3">{{ selectedProprietaire?.prenom }} {{selectedProprietaire?.nom}}
+                        </h4>
+
+                        <hr class="my-3">
+                        <h5>Infos</h5>
+                        <hr class="my-3">
+                        <p class="">Email: {{ selectedProprietaire?.email }}</p>
+                        <p class="">Telephone: {{ selectedProprietaire?.telephone }}</p>
+                        <p class="">Adresse: {{ selectedProprietaire?.adresse }}</p>
+                        <p class="">Date: Créer le {{ selectedProprietaire?.updated_at | date: 'dd/MM/yyyy HH:mm:ss' }}
+                        </p>
+                        <hr class="my-3">
+                        <h5>Description</h5>
+                        <hr class="my-3">
+                        <p class="mb-4">{{ selectedProprietaire?.description }}</p>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btnUserClose" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

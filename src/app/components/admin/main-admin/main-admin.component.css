@@ -1,0 +1,51 @@
+.main-content{
+    height: 100vh;
+    /* border: 1px solid red; */
+    overflow: hidden;
+}
+
+.sidebar{
+    height: 92vh;
+    background-color: #0F42A8;
+    overflow-y: scroll;
+}
+
+.contenu{
+    height: 92vh;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.navbar {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: black;
+}
+
+@media only screen and (max-width: 768px) {
+    .sidebar {
+        position: absolute;
+        top: 58px;
+        left: 0;
+        width: 100%;
+        background-color: #0F42A8;
+        /* height: 100%; */
+        /* border: 1px solid red; */
+        z-index: 1;
+    }
+
+    .main-content{
+        z-index: -1;
+    }
+
+    .navbar{
+        position: fixed;
+        z-index: 7;
+    }
+
+    .contenu{
+        margin-top: 50px !important;
+    }
+}
